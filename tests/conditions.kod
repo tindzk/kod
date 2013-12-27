@@ -1,0 +1,49 @@
+# --------------------------
+# if..else*..else? condition
+# --------------------------
+def action(Str s):
+	if s == "hello":
+		println("Hello World.")
+	else s == "kod":
+		println("kod rocks.")
+	else:
+		println("")
+
+# -----------------------------
+# expr? then : else  expression
+# -----------------------------
+def test(Str s) =
+	s == "hello" ? "Hello World" : ""
+
+# ------------------
+# a => b implication
+# ------------------
+Str s = "hello"
+assert s == "hello" => test(s) == "Hello World"
+
+s = ""
+assert s != "hello" => test(s) == ""
+
+# -----------
+# or operator
+# -----------
+
+# The LHS of the `or' statement may be a nullable or a Boolean expression. This
+# construct allows the developer to use the `or' short-circuit operator for
+# control the flow of evaluation as in Perl or JavaScript.
+
+Bool value = True
+value or raise InvalidArgument()
+
+Bool value2 = False
+value or value2 or raise InvalidArgument()
+
+# -------------------------------
+# value ?: value2  Elvis operator
+# -------------------------------
+
+# The Elvis operator can be used for Boolean values:
+let b = True
+let val = b ?: 10
+
+# Another possible use are nullable values, see also nullable.kod.

@@ -1,0 +1,40 @@
+# While the `class' keyword operates on composed data types, `type' operates
+# on base types. It has multiple purposes:
+# - Create an alias for a (complex) type such as a lambda function.
+# - Compile-time as well as runtime verification for instantiations of this
+#   data type.
+
+type DefaultCallback is Void ()
+type Int64 is Int.Bits64
+
+# Declare a new data type `Person' mapping a name of a person to its age.
+type Person is Map<Str, Int>
+
+# Shorter:
+type Person is {Str: Int}
+
+# Alias an enumeration and restrict its value set with a rule. This allows
+# design by contract.
+enum Day is 1..31
+type OddDay i is Day = i.isOdd()
+
+# Regular expressions.
+type Email s is Str:
+	expr = "complex regular expression"
+	s.matches(expr)
+
+# Person can be used in place of {Str: Int}:
+Person people = {
+	"a": 12,
+	"b": 13
+}
+
+OddDay day = 2 # Compile-time error.
+
+Email mail = "foo@bar.org" # Valid.
+
+# During compile-time all methods that do not have any side-effects are marked
+# as `pure'. In `type' only those methods can be used. For example, opening a
+# TCP connection to verify whether a domain is accessible would be an impure
+# operation. Similarly, generating random numbers is impure and therefore not
+# permitted in `type'.

@@ -1,0 +1,30 @@
+# A method signature followed by a colon expects a statement block whereas a
+# single expression is expected after an equal sign. This latter alternative
+# syntax was introduce as it shortens wrapper methods and is closer to the
+# mathematical notation as can be seen in the following examples.
+
+# No type inference:
+def Int addOne(Int i):
+	return i + 1
+
+# With type inference:
+def addOne(i):
+	return i + 1
+
+# Shorter:
+def addOne(i) = i + 1
+
+# Recursive method:
+def Int f(Int x) =
+	if x == 0: 5
+	else:      x + f(0)
+
+# Shorter:
+def f(x) = x == 0 ? 5 \
+	              : x + f(0)
+
+# Functions with Unicode identifiers.
+def привет():
+	println("привет!")
+def cześć():
+	println("Cześć!")

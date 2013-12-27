@@ -1,0 +1,30 @@
+object Main:
+	def error(i):
+		i == 42 or raise InvalidArgumentException("i must be 42.")
+
+try:
+	Main.error(41)
+catch InvalidArgumentException e:
+	println(e)
+	raise e # Re-raise exception.
+finally:
+	println("Free resources.")
+
+try:
+	Main.error()
+catch InvalidArgumentException:
+	println("InvalidArgumentException caught")
+catch SomeOtherException:
+	println("SomeOtherException caught")
+
+try:
+	Main.error()
+catch Exception:
+	# Catch all exceptions.
+	println("Exception caught")
+
+try:
+	Main.error()
+catch:
+	# Catch all exceptions.
+	println("Exception caught")

@@ -1,0 +1,13 @@
+# There are no static methods in kod. Instead, all static methods must be moved
+# to an object class. This class is initialised at runtime and cannot be
+# instantiated manually.
+
+# This is used for the entrypoint of the application.
+
+object Main extends Logging:
+	def main([Str] args):
+		let conf = Conf(args)
+
+		if conf.help.apply():
+			conf.printHelp()
+			return

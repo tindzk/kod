@@ -1,0 +1,127 @@
+# Lambda functions are anonymous functions that are expressions. They can be
+# bound to a variable name, returned or passed directly.
+
+class ExtendedInt extends Int:
+	def times(Void () c):
+		for i in 1..10: c()
+
+	# `cur' cannot be accessed. It only serves documentation purposes and can
+	# be dropped.
+	def times(Void (Int cur) c):
+		for i in 1..10: c(i)
+
+# Define a funciton for applying recursively a set of functions on a string.
+def Str apply(Str cur, List<Str (Str input)> functions) =
+	match functions:
+		# Like in Haskell we chop off the first element (function) and apply the
+		# given string on it. Recursively, we call apply() for the remaining
+		# functions.
+		is hd:tl: apply(hd(cur), tl)
+		is []: cur
+
+# Another possible type signature here would have been:
+def Str apply(Str cur, [Str (Str input)] functions)
+
+# Using higher-order functions the above function could be shortened to:
+def Str apply(Str cur, List<Str (Str input)> functions) =
+	# The second argument here is an unnamed lambda function taking two parameters.
+	functions.foldLeft(cur, (acc, cur) -> cur(acc))
+
+# Create a lambda function with multiple statements, binding it to the variable
+# name `add':
+Int add(Int a, Int b):
+	println(a + b)
+	return a + b
+let nine = add(4, 5)
+
+# The types can also be inferred.
+let add(a, b):
+	return a + b
+
+# Shorter:
+let add(a, b) = a + b
+
+# Define `add' using an unnamed lambda expression instead. As above, the
+# parameter and return types are derived from the function usage.
+let add = (a, b) -> a + b
+let nine = add(4, 5)
+
+# If a lambda expression does not take any arguments, it looks like this:
+let f = () -> println("Hello World!")
+
+# Define an unnamed lambda expression with exactly one argument.
+let onFilter = x -> x <= 3
+
+# The _ serves as a placeholder. onFilter() could be thus shortened to:
+let onFilter = _ <= 3
+
+# Lambda functions have access to all variables from the calling context.
+let x = 3
+let lambda(): x = x * 2
+lambda()
+println(x)
+lambda()
+println(x)
+
+# Another example for lambda functions having their own referencing environment.
+let outer():
+	let cnt = 0
+	let inner():
+		cnt++
+		return cnt
+	return inner
+println(outer()) # 1
+println(outer()) # 2
+
+# Using the above onFilter() function.
+let elems = [1, 2, 3, 4, 5]
+let filtered = elems.filter(onFilter)
+
+# We can also pass a lambda function directly as an argument.
+filtered = elems.filter(x -> x <= 3)
+
+# With the placeholder notation:
+filtered = elems.filter(_ <= 3)
+
+# Another example:
+elems.reduce(0, (acc, cur) -> acc + cur)
+
+# The `with' keyword allows to externally declare the lambda function:
+elems.reduce(0, f) with f = (acc, cur) -> acc + cur
+
+# You can set more than one variable within the `with' part.
+elems.reduce(initial, f) with initial = 0, f(acc, cur) = acc + cur
+
+# With indention this could be aligned in a more readable way:
+elems.reduce(initial, f) with:
+	initial = 0
+	f(acc, cur) = acc + cur
+
+# `with' allows to pass a lambda function with multiple statements:
+filtered = elems.filter(f) with f:
+	let z = x * 2
+	z > 5 ? x <= 3 : x <= 5
+
+# More examples with higher-order functions:
+elems.map(x -> x * x) # Squares.
+elems.map(_ * _) # Shorter (using placeholders).
+elems.foldLeft(0, (acc, cur) -> acc + cur) # Sum.
+
+# reduce()
+[Int] list = [1, 2, 3, 4, 5].reduce((x, y) -> x * y)
+
+# Use the above declared times() methods.
+ExtendedInt(10).times(f) with f: # f without arguments.
+	println("Iteration")
+ExtendedInt(10).times(println) # Prints the iteration number.
+
+list = ["red", "yellow", "orange"]
+list.each(f) with f(color) = println(color)
+list.each(println(_))
+
+# Sort a list of files by timestamp (<=> is explained in operators.kod):
+files = files.sort((a, b) -> a.modified <=> b.modified)
+
+# Use our defined apply() method. This works as Str.reverse(a) is equivalent to
+# a.reverse().
+apply("foo", List(Str.reverse, Str.toUpper))

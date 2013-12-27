@@ -1,0 +1,25 @@
+# See also http://pythonconquerstheuniverse.wordpress.com/2012/04/29/python-decorators/
+
+def Str () makeBold(Str () fn):
+	# Named lambda expression, see lambda.kod.
+	let wrapped() = "<b>${fn()}</b>"
+	return wrapped
+
+def Str () makeItalic(Str () fn) =
+	# Similar to makeBold() but this time with an unnamed lambda expression.
+	() -> "<i>${fn()}</i>"
+
+@makeBold
+@makeItalic
+def hello() = "Hello world."
+
+# Decorators with additional arguments:
+def Str () addTag(Str () fn, Str tag) =
+	() -> "<$tag>${fn()}</$tag>"
+
+@addTag("b")
+@addTag("i")
+def hello2() = "Hello world."
+
+println(hello())  # <b><i>Hello world.</i></b>
+println(hello2()) # <b><i>Hello world.</i></b>

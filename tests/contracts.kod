@@ -1,0 +1,59 @@
+# A contract is a language construct facilitating verification and code
+# optimisations by specifying pre- and postconditions. The compiler gets more
+# information about the methods and can use this contextual information to
+# produce more efficient code.
+
+# Contracts encourage the developer to think more about possible input and
+# output values, i.e., which values can the method possibly take and return.
+# This leads ultimately to more robust code.
+
+# Contracts may be independent from the implementation. This can be used if the
+# employer provides a trait with all methods that have to be implemented along
+# with pre- and postconditions. The developer can already verify the
+# implementation at an early stage. At the same time he has a better overall
+# understanding of what has to be implemented and how the methods interact with
+# each other.
+
+# Contracts serve also documentation purposes. Usually, input and output
+# parameters are documented in textual form (comments). Instead, contracts allow
+# to do this in a consistent and unambiugous way by specifying evaluable
+# expressions.
+
+# Contracts respect the class hierarchy and when a class is inherited, the
+# contracts of the overriding class must not be violated.
+
+# Runtime checks can be deactivated completely in a shipping version of the
+# program to prevent unnecessary overhead. For this reason contracts must not be
+# seen as a replacement for proper error handling and the code must not rely on
+# the contracts being evaluated. Contracts should be considered solely as a
+# means to find programmer mistakes more quickly.
+
+# See also types.kod for another possibility of doing design by contract
+# (abstracting from a data type and restricting the value set).
+
+class BlockNode extends Node:
+	def Node moveAfter(Node from, Node? to, BlockNode destBlock, Node destOffset):
+		requires:
+			self.contains(from)
+			to == None or (from.compare(to) >= 0 and self.contains(to))
+			destBlock.contains(destOffset)
+
+		ensures:
+			self.contains(result)
+
+		Node? cur = from
+		while cur != None:
+			Node? next = cur.next
+			self.detach(cur, False)
+			destBlock.append(destOffset, cur)
+			destOffset = cur
+			if cur == to:
+				break
+			cur = next
+		return destOffset
+
+	def Int count():
+		ensures:
+			self.first == None => result == 0
+
+		return self.count(self)

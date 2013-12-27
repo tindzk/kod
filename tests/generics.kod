@@ -1,0 +1,30 @@
+# Construct a class with type parameters.
+class Pair<L, R>(L left, R right)
+
+# Extend from this class, instantiating these type parameters.
+class Position(Int x, Int y) extends Pair<Int, Int>(x, y)
+
+# Shorter (utilising type inference):
+class Position(Int x, Int y) extends Pair(x, y)
+
+# Extend Pair, inheriting all parameters.
+class CustomPair extends Pair
+
+# Similarly:
+class Number extends [Digit]
+class Number extends List<Digit>
+
+# <T> must be specified, otherwise the compiler will assume that T refers to
+# some specific class.
+def <T> List<T> reverse(List<T> elems) = elems.reverse()
+
+# Shorter:
+def <T> [T] reverse([T] elems) = elems.reverse()
+
+Pair<Str, Str> pair = Pair<Str, Str>("key", "value")
+Pair<Str, Str> pair = Pair("key", "value")
+let pair = Pair("key", "value")
+
+let list = ArrayList<Str>()
+v.add("test")
+let s = list.get(0)

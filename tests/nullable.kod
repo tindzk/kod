@@ -1,0 +1,43 @@
+# All types are either nullable or non-nullable. The latter guarantees that such
+# a type never stores the None value. A nullable type is indicated with a
+# trailing question mark. By analogy, only when explicitly specified, a variable
+# can store the None value.
+#
+# - Str never stores None.
+# - Str? may store None.
+#
+# The compiler can directly catch programming mistakes during compile-time like
+# statically assigning None to a non-nullable type. At runtime additional checks
+# are implicitly performed when coercing a nullable value to a non-nullable
+# type. This has the advantage that the code fails as early as possible, notably
+# exactly there where the bug was introduced rather than propagating it into
+# unrelated code fragments.
+#
+# In contrast to other programming languages such as Scala or Haskell, this is a
+# direct language feature and does not map to a class such as Option.
+
+# There is only one restriction in conjunction with type inference: A type
+# cannot be inferred if the default value of the variable is None. This cannot
+# be solved as the following is always ambiguous (`a' could be of any type).
+#
+#  let a = None
+#
+# In this case, the developer needs to specify the type explicitly:
+Int? b = None
+
+let val  = b # val is of type Int?.
+Int val2 = b # Unboxes automatically. When the value is None, a runtime-time
+             # exception is thrown.
+
+# As to make unboxing safer, the Elvis operator was introduced. It only unboxes
+# the expression if it is None, but provides an alternative otherwise.
+let val = a ?: 10
+
+# This is short for (with the difference that `a' gets only evaluated once):
+let val = a != None ? a : 10
+let val = a ? a : 10
+
+# The RHS of the ?: operation can also be a statement. This is useful for error
+# handling. Considering that find() returns User?, `user' is correctly inferred
+# to be of the type User. If unboxing fails, a UserNotFound exception is thrown.
+let user = User.find("Linus Torvalds") ?: raise UserNotFound()

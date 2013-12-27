@@ -1,0 +1,8 @@
+# Assertions allow to specify the expected behaviour of the code. A program
+# must run reliably even with the absence of assertions. Assertions can be
+# disabled when shipping a production version to improve the performance.
+# Therefore, a program must not depend on the assertions being executed.
+
+def loop(Int i):
+	for i in 1..10:
+		assert i < 10

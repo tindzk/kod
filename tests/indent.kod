@@ -1,0 +1,48 @@
+# This file verifies the nesting capabilities of the grammar with different
+# syntactical elements.
+
+class Circle(radius):
+	def draw(g):
+		if True:
+			a()
+		else:
+			b()
+
+
+def String apply(String cur, List<String (String input)> functions) =
+	match functions:
+		is hd:tl: apply(hd(cur), tl)
+		is []: cur
+
+10.times(f) with f:
+	print("iteration")
+
+Int add(Int a, Int b):
+	return a
+
+let nine = add(4, 5)
+
+a()
+b()
+
+# Loop without body.
+while True:
+	pass
+
+while a():
+	b()
+
+while a():
+	# Valid with comment.
+	b()
+
+
+# Valid with empty lines between header and statement.
+while a():
+
+
+	b()
+
+while b():
+
+	c()

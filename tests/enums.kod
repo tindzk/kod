@@ -1,0 +1,77 @@
+# Enumerations serve the purpose of binding a value set to a custom type.
+
+# -------------------------
+# Binding list enumerations
+# -------------------------
+
+# ...with ranges.
+enum Age is 18..28
+
+# ...with strings.
+enum Name is ["Peter Burke", "Neil Caffrey"]
+
+# -----------------
+# Binding constants
+# -----------------
+
+# We can map constants to values, but this is optional. If the values are
+# dropped, all elements get a numerical value, starting by 0. This could be
+# overwritten for any value. Then, for each subsequent element, 1 is added.
+enum Month is { Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec }
+
+# Note that the value can be any constant expression, even lists or strings. The
+# only constraint is that all elements must have the same type.
+enum ConnState is {
+  Connect = 0x03,
+  Receive = 0x04,
+  Send = 0x05,
+  Disconnect = 0x06
+}
+
+# -----
+# Usage
+# -----
+
+Age? age = Age(18)
+Age? age2 = 18 # Implicit.
+
+Name name = "Joe Doe" # Compile-time error.
+
+# Enumerations are iterable.
+for age in Age:
+	println(age)
+
+ConnState state = ConnState[0] # Access first element.
+ConnState? state = ConnState(0x03) # Resolve by value. None if not found.
+ConnState state = ConnState.Connect # Address directly.
+
+# Enumerations implement the traits `Equal', `Ordinal', `Ordering', `Bounded'
+# and extend from the class `Enumeration'.
+
+# Due to inheriting pred() and succ() from `Ordinal' the following is allowed:
+Month.pred(Month.Jan) == Undefined
+Month.succ(Month.Jan) == Month.Feb
+
+# We can also construct a list using ranges:
+[Month.Jan .. Month.Dec]
+
+# Shorter:
+[Month.Jan ..]
+
+# As enumerations implement the trait `Bounded', we can access the first and the
+# last element like this:
+Month.minBound() == Month.Jan
+Month.maxBound() == Month.Dec
+
+# Enumerations inherit the operators == and != from `Equal':
+Month.Jan != Month.Sun and Month.Jan == Month.Dec
+
+# ...and also comparison operators from `Ordering':
+Month.Jan > Month.Mar == False
+Monday.Jan.compare(Month.Feb) == Ordering.LessThan
+
+# Shorter:
+Monday.Jan <=> Month.Feb == Ordering.LessThan
+
+# Check occurence in lists:
+Month.Dec in [Month.Jan .. Month.Mar] == False

@@ -1,0 +1,123 @@
+class EmptyClass
+
+class ExtendingClass extends EmptyClass
+
+class ParameterisedClass(Int a, Int b)
+
+class ExtendingParameterisedClass(Int x) extends ParameterisedClass(1, x)
+
+abstract class AbstractClass
+
+class ClassWithMethods:
+	def methodWithoutResult():
+		print("a")
+	def methodWithResult():
+		return "b"
+	def methodWithResult2() = "b"
+
+class Date(Number day, Number month, Number year = 2012):
+	# These statements are executed when instantiating the class.
+	day   = 1
+	month = 12
+
+	def Date getSystemDate() = Date(29, 12)
+	def (Number, Number) getMonthYearTuple() = (self.month, self.year)
+
+class MemberInit(Number day):
+	# Initialisation of member variabes can comprise expressions.
+	self.day = day < 0 or day > 31 ? 1 : day
+
+class Main:
+	# Declare two member variables. Access to the attribute `name' is only
+	# granted to this class and its super classes. Due to the `read' qualifier
+	# all classes except for this one have solely read-only access.
+	protected read Str name = "Max Mustermann"
+	public    read Int age  = 20
+
+# Only accept non-red colours as valid ones.
+type ValidColour c is Colour = (c != Colour.Red)
+
+abstract class Shape:
+	# All attributes must have default values.
+	ValidColour? fillColour = None
+	Double area = 0.0
+
+	# Abstract methods are those without a body.
+	def draw(Graphics g)
+
+class Circle(Int radius) extends Shape:
+	# If private variables are not used later on by any method, the memory will
+	# be freed right after their usage here.
+	private let back = Math.Pi * radius
+	self.area = back * radius
+
+	def draw(Graphics g):
+		if self.fillColour == None:
+			g.drawOval(0, 0, radius / 2, radius / 2)
+		else:
+			g.setColour(fillColour)
+			g.fillOval(0, 0, radius / 2, radius / 2)
+
+class Square(Int width) extends Shape:
+	def draw(Graphics g):
+		if self.fillColour == None:
+			g.drawRect(0, 0, width, width)
+		else:
+			g.setColour(fillColour)
+			g.fillRect(0, 0, width, width)
+
+class Fruit:
+	def worth() = 5
+
+class Apple extends Fruit:
+	# When a method with the same name occurs in the super class, the `override'
+	# keyword must be specified.
+	override def worth() = 1
+
+# Calling a super method or accessing super values:
+class Fruit:
+	def worth() = 5
+class Apple extends Fruit:
+	override def worth() = super.worth() + 1
+
+# Class with multiple constructors.
+class Point:
+	Int x = 10
+	Int y = 10
+
+	def self(Int x, Int y):
+		self.x = x
+		self.y = y
+
+	def self(Int x):
+		self.x = x
+		self.y = 0
+
+# CustomPoint inherits all constructors.
+class CustomPoint extends Point
+
+# CustomPoint2 inherits all constructors and overrides the first one.
+class CustomPoint2 extends Point:
+	override def self(Int x, Int y):
+		super(x, y)
+		println("$x.$y")
+
+# When a class parameter in the extended class is specified, the class still
+# inherits all other constructors.
+class CustomPoint3(Int x) extends Point(x + 1)
+
+# Instantiating class `Date'.
+let date = Date(12, 1)
+
+# Calling getSystemDate with no arguments.
+date.getSystemDate()
+
+# This is equivalent to:
+Date.getSystemDate(date)
+
+let shape = Square(100)
+shape.fillColour = Colour.Blue
+let colour = shape.fillColour
+let colour2 = shape.fillColour()
+assert colour == colour2
+shape.fillColour(Colour.Red)

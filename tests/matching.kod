@@ -1,0 +1,104 @@
+# match blocks are similar to switch..case blocks with some differences:
+#  - Ranges can be matched.
+#  - Types can be matched (-> with implicit casting).
+#  - Lists of types can be matched.
+#  - Class parameters can be extracted.
+#  - Fall-through is not supported. Therefore, there is no need to use a keyword
+#    such as `break' to prevent the execution of the subsequent cases as in C.
+
+abstract class Colour
+class Red extends Colour
+class Blue extends Colour
+class Green extends Colour
+
+# Alternatively:
+class Colour2(Int red, Int green, Int blue)
+class Red2(Int r) extends Colour2(r, 0, 0)
+class Green2(Int g) extends Colour2(0, g, 0)
+class Blue2(Int b) extends Colour2(0, 0, b)
+
+def Bool checkPrime(Int number) =
+	match number:
+		is 1: True
+		is 2: True
+		is 3: True
+		is 5: True
+		is 7: True
+		or: False
+
+def Bool checkPrime2(Int number) =
+	match number:
+		in [1..3, 5]: True
+		is 7: True
+		or: False
+
+def Bool checkPrime3(Int number) = number in [1..3, 5, 7]
+
+def printColour(Colour c):
+	match c:
+		is Colour(r, 0, 0): println("Red: $r")
+		is Colour(0, g, 0): println("Green: $g")
+		is Colour(0, 0, b): println("Blue: $b")
+		is Colour col:
+			print("R: ${col.red}, ")
+			print("G: ${col.green}, ")
+			println("B: ${col.blue}")
+		or: println("Invalid color")
+
+def printColour2(Colour2 c):
+	match c:
+		is Red2(v): println("Red: $v")
+		is Green2(v): println("Green: $v")
+		is Blue2(v): println("Blue: $v")
+		is Colour2 col:
+			print("R: ${col.red}, ")
+			print("G: ${col.green}, ")
+			println("B: ${col.blue}")
+		or: println("Invalid color")
+
+def printColour(Colour? c):
+	match c:
+		# If a class parameter is specified in one element of the `in' keyword,
+		# then it must occur in all elements as well, and there must be
+		# one common super class.
+		# The same applies for c which has a common super class for Red, Green
+		# and Blue, notably Colour.
+		in [Red(v), Green(v), Blue(v)] c:
+			println("${c.name}: $v")
+		is Colour col:
+			print("R: ${col.red}, ")
+			print("G: ${col.green}, ")
+			println("B: ${col.blue}")
+		or: println("Invalid color")
+
+let c = Red()
+match c:
+	is Red: System.out.println("red")
+	is Blue: System.out.println("blue")
+	or: System.out.println("some other colour")
+
+# Use matching for implicit casting.
+Object obj = performOperation()
+Colour c = match obj:
+	is Colour x: x
+	or: None
+
+c = obj is Colour ? obj as Colour : None
+
+printColour(Red(100))
+printColour(Blue(220))
+printColour(Colour(100, 200, 50))
+printColour(None)
+
+# We can match tuples.
+match (a, b, c):
+	is (Int i, Char c, Str s) tuple: pass
+	or: pass
+
+match (a, b, c):
+	is (Int i, Char c, Str s): pass
+	or: pass
+
+match (a, b, c):
+	is (Int, Char, Str): pass
+	or: pass

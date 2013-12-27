@@ -1,0 +1,15 @@
+# Newline.
+"\n"
+
+# Quote.
+"'"
+
+# String interpolation.
+"$x + $y = ${x + y}"
+
+# No string interpolation by escaping the dollar sign.
+"\$x + \$y = \${x+y}"
+
+# Alternative way, passing an Enumerable object, i.e. tuple or list. Internally,
+# the operator $ method is used. The string is parsed during runtime.
+"$1 + $2 = $3" $ (x, y, x + y)

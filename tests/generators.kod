@@ -1,0 +1,21 @@
+# Generators can be used to implement iterators. Generators preserve the local
+# state between the function calls. Therefore, they are suitable to implement
+# complex state-oriented iteration techniques such as binary tree traversal.
+
+# Generate the Fibonacci sequence using a generator.
+def Generator fibonacci():
+	let (i, j) = (0, 1)
+	while True:
+		yield i
+		(i, j) = (j, i + j)
+
+# We can use the generator as an iterator.
+for number in fibonacci():
+	println(number)
+
+# The result of fibonacci() is callable.
+Generator fib = fibonacci()
+[Int] numbers = [fib() for i in 0..100]
+
+# As Generator implements the trait `Collection', we can shorten this to:
+[Int] numbers = fib.take(100)

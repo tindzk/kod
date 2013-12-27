@@ -1,0 +1,31 @@
+# See also http://en.wikipedia.org/wiki/Covariance_and_contravariance_%28computer_science%29
+
+# The default in kod is invariance. Covariance can be set for a type
+# parameter by placing a plus sign in front of the identifier. For contravariance
+# a minus must be used instead.
+
+# Covariance
+class Stack<+A>:
+	def push(A elem): pass
+	def A top(): pass
+	def pop(): pass
+	def toStr(): pass
+
+# Due to the +A, there is a subtyping relationship between Stack<Cat> and Stack<Animal>
+# if Cat extends Animal.
+
+class Components<+V extends Component> extends HashMap<Str, V>
+
+# Usage of the covariant stack.
+Stack<Str> stack = Stack<Str>()
+s.push(MyStr("Hello"))
+s.push("World")
+
+Stack<MyStr> stack2 = Stack<mYStr>()
+s.push(MyStr("Hello"))
+s.push(MyStr("World"))
+stack = stack2 # Valid due to subtyping relationship.
+
+let map = Components<JLabel>()
+map.add({ "lbl1": JLabel(),
+		  "lbl2": JLabel() })

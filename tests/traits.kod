@@ -1,0 +1,104 @@
+# Traits are reusable classes allowing horziontal reuse of a method selection.
+# They permit multiple inheritance while solving the diamond problem. If the
+# body of a trait method is omitted, the method is considered abstract.
+# Therefore, traits can be used just like an interface in Java.
+
+# Define a new trait for all common methods and default actions.
+trait Say:
+	def say():
+		pass
+
+trait Hello extends Say:
+	override def say():
+		super.say()
+		println("Hello ")
+
+trait World extends Say:
+	override def say():
+		super.say()
+		println("World")
+
+class HelloWorld with Hello, World: # Say does not need to be listed here. It is imported implicitly.
+	override def say():
+		super.say()
+		println("!")
+
+class Main:
+	def main():
+		let o = HelloWorld()
+		o.say() # Hello World!
+		(o as World).say() # Hello World
+		(o as Hello).say() # Hello
+
+# ---
+
+trait Properties:
+	def [Str] properties() = []
+
+# A trait can only extend other traits, not classes.
+trait Red extends Properties:
+	override def [Str] properties() =
+		super.properties() + ["red"]
+
+trait Shiny extends Properties:
+	override def [Str] properties() =
+		super.properties() + ["shiny"]
+
+abstract class Ball with Properties:
+	Str toStr():
+		return "It's a " + properties().join(", ") + " ball"
+
+# The last added properties() gets called in Ball.
+class RedShinyBall extends Ball with Red, Shiny
+
+class Test:
+	def test():
+		let ball = RedShinyBall()
+		println(ball.toStr())
+
+# ---
+
+# Define common attributes in the trait `Bounding'.
+trait Bounding:
+	[Str] descr = []
+
+	Int x = 0
+	Int y = 0
+
+	Int width = 0
+	Int height = 0
+
+trait Moveable extends Bounding:
+	self.descr.add("moveable")
+
+	def moveTo(Int x, Int y):
+		pass
+
+trait Resizeable extends Bounding:
+	self.descr.add("resizable")
+
+	def resize(Int newWidth, Int newHeight):
+		pass
+
+class Rectangle with Moveable, Resizeable:
+	def fillColor(color):
+		pass
+
+# ---
+
+trait Similarity:
+	def Bool isSimilar(Object value)
+	def Bool isNotSimilar(Object value) = not isSimilar(x)
+
+class Point(Int x, Int y) with Similarity:
+	# Implements a trait method without body, therefore no `override' needed.
+	def Bool isSimilar(Object value) =
+		match value:
+			is Point(p, q): self.x == p and self.y == q
+			or: False
+
+class TraitsTest:
+	let p1 = Point(2, 3)
+	let p2 = Point(2, 4)
+	println(p1.isNotSimilar(p2))
+	println(p1.isNotSimilar(1234))
