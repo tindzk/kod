@@ -446,6 +446,12 @@ expression
   | expression 'or' expression
   | expression 'xor' expression
   | expression 'nor' expression
+  | expression
+    ('=='<assoc=right>
+    |'!='<assoc=right>
+    |'<=>'<assoc=right>
+    )
+    expression
 
   /* Binary non-overloadable expressions */
   | expression '$' expression /* String interpolation. */
@@ -455,12 +461,8 @@ expression
   | expression 'as' expression
   | expression '..' expression?
   | expression
-    ('=='<assoc=right>
-    |'==='<assoc=right>
-    |'!='<assoc=right>
-    |'!=='<assoc=right>
-    |'<=>'<assoc=right>
-    )
+    ('==='<assoc=right>
+    |'!=='<assoc=right>)
     expression
 
   /* Other expressions. */
