@@ -33,12 +33,12 @@
 
 class BlockNode extends Node:
 	def Node moveAfter(Node from, Node? to, BlockNode destBlock, Node destOffset):
-		requires:
+		require:
 			self.contains(from)
 			to == None or (from.compare(to) >= 0 and self.contains(to))
 			destBlock.contains(destOffset)
 
-		ensures:
+		ensure:
 			self.contains(result)
 
 		Node? cur = from
@@ -53,7 +53,7 @@ class BlockNode extends Node:
 		return destOffset
 
 	def Int count():
-		ensures:
+		ensure:
 			self.first == None => result == 0
 
 		return self.count(self)

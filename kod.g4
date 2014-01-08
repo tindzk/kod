@@ -187,13 +187,13 @@ memberDeclaration
   | separator+
   ;
 
-/* Declare requires and ensures for contracts. */
-requires
-  : 'requires:' separator Indent (statement? separator)* Dedent
+/* Declare require and ensure for contracts. */
+require
+  : 'require:' separator Indent (statement? separator)* Dedent
   ;
 
-ensures
-  : 'ensures:' separator Indent (statement? separator)* Dedent
+ensure
+  : 'ensure:' separator Indent (statement? separator)* Dedent
   ;
 
 methodDeclaration
@@ -272,9 +272,9 @@ codeBlock
 statementBlock
   : separator*
     Indent
-      requires?
+      require?
       separator*
-      ensures?
+      ensure?
       (statement? separator)*
     Dedent
   | statement
