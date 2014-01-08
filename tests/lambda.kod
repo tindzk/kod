@@ -10,7 +10,7 @@ class ExtendedInt extends Int:
 	def times(Void (Int cur) c):
 		for i in 1..10: c(i)
 
-# Define a funciton for applying recursively a set of functions on a string.
+# Define a function for applying recursively a set of functions on a string.
 def Str apply(Str cur, List<Str (Str input)> functions) =
 	match functions:
 		# Like in Haskell we chop off the first element (function) and apply the

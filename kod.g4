@@ -445,6 +445,7 @@ expression
   | expression 'and' expression
   | expression 'or' expression
   | expression 'xor' expression
+  | expression 'nor' expression
 
   /* Binary non-overloadable expressions */
   | expression '$' expression /* String interpolation. */
