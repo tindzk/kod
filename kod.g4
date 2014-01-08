@@ -213,7 +213,7 @@ functionDeclaration
 
 /* Operator overloading. */
 operatorDeclaration
-  : 'oper' type? ('+' | '-' | '*' | '/' | '<' | '>' | '<=' | '>=')
+  : 'op' type? ('+' | '-' | '*' | '/' | '<' | '>' | '<=' | '>=')
     '(' (parameterDeclaration (',' parameterDeclaration)*)? ')'
     codeBlock?
   ;

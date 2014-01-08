@@ -2,10 +2,10 @@
 # classes such as `Enumeration'.
 trait Ordering<T>:
 	def Int compare(T value)
-	oper Bool < (T value) = self.compare(value) < 0
-	oper Bool > (T value) = self.compare(value) > 0
-	oper Bool <=(T value) = self.compare(value) <= 0
-	oper Bool >=(T value) = self.compare(value) >= 0
+	op Bool < (T value) = self.compare(value) < 0
+	op Bool > (T value) = self.compare(value) > 0
+	op Bool <=(T value) = self.compare(value) <= 0
+	op Bool >=(T value) = self.compare(value) >= 0
 
 # --------------------
 # Operator overloading
@@ -18,7 +18,7 @@ class Money(Int amount) with Ordering<Money>:
 
 # Overload the plus operator.
 class Meter(Double value):
-	oper Meter +(Meter m) = Meter(m.value + value)
+	op Meter +(Meter m) = Meter(m.value + value)
 
 # ----------------
 # ++, -- operators
