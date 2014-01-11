@@ -142,7 +142,7 @@ traitDeclaration
     ('extends' type
       ('(' variableOrInitialiser (',' variableOrInitialiser)* ')')?
     )?
-    (':' separator Indent initialMemberDeclaration* memberDeclaration* separator* Dedent)?
+    (':' separator Indent initialMemberDeclaration* memberDeclaration* Dedent)?
   ;
 
 objectDeclaration
@@ -150,7 +150,7 @@ objectDeclaration
     ('extends' type
       ('(' variableOrInitialiser (',' variableOrInitialiser)* ')')?
     )?
-    (':' separator Indent initialMemberDeclaration* memberDeclaration* separator* Dedent)?
+    (':' separator Indent initialMemberDeclaration* memberDeclaration* Dedent)?
   ;
 
 classDeclaration
@@ -161,7 +161,7 @@ classDeclaration
       ('(' variableOrInitialiser (',' variableOrInitialiser)* ')')?
     )?
     ('with' type (',' type)*)?
-    (':' separator Indent initialMemberDeclaration* memberDeclaration* separator* Dedent)?
+    (':' separator Indent initialMemberDeclaration* memberDeclaration* Dedent)?
   ;
 
 accessLevel
