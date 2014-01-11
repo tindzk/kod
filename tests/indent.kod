@@ -9,10 +9,10 @@ class Circle(radius):
 			b()
 
 
-def String apply(String cur, List<String (String input)> functions) =
+def String apply(String cur, List<String (String input)> functions):
 	match functions:
-		is hd:tl: apply(hd(cur), tl)
-		is []: cur
+		is hd:tl: return apply(hd(cur), tl)
+		is []: return cur
 
 10.times(f) with f:
 	print("iteration")

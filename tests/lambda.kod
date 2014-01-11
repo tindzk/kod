@@ -11,13 +11,13 @@ class ExtendedInt extends Int:
 		for i in 1..10: c(i)
 
 # Define a function for applying recursively a set of functions on a string.
-def Str apply(Str cur, List<Str (Str input)> functions) =
+def Str apply(Str cur, List<Str (Str input)> functions):
 	match functions:
 		# Like in Haskell we chop off the first element (function) and apply the
 		# given string on it. Recursively, we call apply() for the remaining
 		# functions.
-		is hd:tl: apply(hd(cur), tl)
-		is []: cur
+		is hd:tl: return apply(hd(cur), tl)
+		is []: return cur
 
 # Another possible type signature here would have been:
 def Str apply(Str cur, [Str (Str input)] functions)

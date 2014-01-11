@@ -298,6 +298,20 @@ statement
   /* while loop: The expression must be a condition (i.e. Boolean expression). */
   | 'while' expression ':' statementBlock
 
+  /* If statement. */
+  | 'if' expression ':' statementBlock
+    (separator* 'else' expression ':' statementBlock)*
+    (separator* 'else:' statementBlock)?
+
+  /* Try statement. */
+  | 'try:' statementBlock
+    (separator* 'catch' (type Identifier?)? ':' statementBlock)+
+    (separator* 'finally:' statementBlock)?
+
+  /* Match statement. */
+  | 'match' expression ':'
+    separator+ Indent (matchCase | separator)* Dedent
+
   /* repeat loop: The expression must be an Integer expression. If the expression
    * is omitted, this equals an endless loop.
    */
@@ -461,14 +475,6 @@ expression
     expression
 
   /* Other expressions. */
-  | 'if' expression ':' statementBlock
-    (separator* 'else' expression ':' statementBlock)*
-    (separator* 'else:' statementBlock)?
-  | 'try:' statementBlock
-    (separator* 'catch' (type Identifier?)? ':' statementBlock)+
-    (separator* 'finally:' statementBlock)?
-  | 'match' expression ':'
-    separator+ Indent (matchCase | separator)* Dedent
   | untypedParameters '->' expression /* Lambda expression. */
   | '[' expression 'for' untypedParameters 'in' expression ('if' expression)? ']' /* List comprehension */
   | '(' expression ')'

@@ -15,9 +15,9 @@ def addOne(i):
 def addOne(i) = i + 1
 
 # Recursive method:
-def Int f(Int x) =
-	if x == 0: 5
-	else:      x + f(0)
+def Int f(Int x):
+	if x == 0: return 5
+	else:      return x + f(0)
 
 # Shorter:
 def f(x) = x == 0 ? 5 \
