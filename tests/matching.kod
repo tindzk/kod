@@ -86,6 +86,9 @@ match obj:
 # Shorter:
 c = obj is Colour ? obj as Colour : None
 
+# If there is an explicit type check (using `is'), the `as' operator can be dropped:
+c = obj is Colour ? obj : None
+
 printColour(Red(100))
 printColour(Blue(220))
 printColour(Colour(100, 200, 50))
