@@ -47,3 +47,17 @@ let b = True
 let val = b ?: 10
 
 # Another possible use are nullable values, see also nullable.kod.
+
+# -------------------
+# a -> b  Implication
+# -------------------
+
+# a -> b <=> not(a and not b) <=> not a or b
+# b is only evaluated if a == True.
+
+if not (hasReturnValue -> terminates):
+	raise CompileException("Method needs a return or throw statement that is always reachable.", position)
+
+# Equivalent to:
+if hasReturnValue and not terminates:
+	raise CompileException("Method needs a return or throw statement that is always reachable.", position)
