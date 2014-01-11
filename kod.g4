@@ -90,7 +90,7 @@ grammar kod;
   }
 }
 
-program
+compilationUnit
   : module? imports declarations statements EOF
   ;
 
