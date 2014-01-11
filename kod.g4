@@ -422,7 +422,7 @@ expression
   | map
   | 'self'
   | (Identifier | type) arguments
-  | expression '.' Identifier arguments?
+  | expression ('.' | '?.') Identifier arguments?
   | expression '?' expression ':' expression
   | expression '=>' expression /* Implication. */
   | expression '[' expression ']'

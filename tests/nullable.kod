@@ -30,7 +30,8 @@ Int val2 = b # Unboxes automatically. When the value is None, a runtime-time
              # exception is thrown.
 
 # As to make unboxing safer, the Elvis operator was introduced. It only unboxes
-# the expression if it is None, but provides an alternative otherwise.
+# the expression if it does not evaluate to None. Otherwise the given
+# alternative value is taken.
 let val = a ?: 10
 
 # This is short for (with the difference that `a' gets only evaluated once):
@@ -41,3 +42,17 @@ let val = a ? a : 10
 # handling. Considering that find() returns User?, `user' is correctly inferred
 # to be of the type User. If unboxing fails, a UserNotFound exception is thrown.
 let user = User.find("Linus Torvalds") ?: raise UserNotFound()
+
+# The Safe Access operator allows accessing attributes and methods of a
+# nullable value while avoiding an exception if the value is null. It just
+# returns null if this is the case.
+# The operator is particularly useful when following a chain of nullable
+# references as it significantly reduces the number of None-checks.
+
+User? user = User.find("Linus Torvalds")
+String? street = user?.address?.street # street is null if user, address or street is null.
+
+# Other examples:
+foo?.bar
+foo?.bar()?.foo()
+foo?.bar[0]?.foo()
