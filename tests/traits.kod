@@ -3,6 +3,11 @@
 # body of a trait method is omitted, the method is considered abstract.
 # Therefore, traits can be used just like an interface in Java.
 
+# There are the following restrictions:
+# - Traits cannot have parameters such as classes.
+# - Traits cannot define constructors.
+# - Traits can only extend other traits.
+
 # Define a new trait for all common methods and default actions.
 trait Say:
 	def say():

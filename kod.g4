@@ -136,11 +136,7 @@ enumDeclaration
   ;
 
 traitDeclaration
-  : 'trait' Identifier typeParameters?
-    ('(' parameterDeclaration (',' parameterDeclaration)* ')')?
-    ('extends' type
-      ('(' variableOrInitialiser (',' variableOrInitialiser)* ')')?
-    )?
+  : 'trait' Identifier typeParameters? ('extends' type)?
     (':' separator Indent initialMemberDeclaration* memberDeclaration* Dedent)?
   ;
 
