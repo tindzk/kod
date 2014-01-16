@@ -29,7 +29,7 @@ grammar kod;
 
     Token t = tokens.poll();
 
-    if (t.getType() == Line) {
+    if (t.getType() == EndOfLine) {
       tokens.offer(super.nextToken());
       Token next = tokens.poll();
 
@@ -39,7 +39,7 @@ grammar kod;
         /* Skip all lines only containing indentation and no other tokens. */
         Token nextNext = super.nextToken();
 
-        if (nextNext.getType() != Line) {
+        if (nextNext.getType() != EndOfLine) {
           while (n < indentationNesting) {
             indent(Dedent, next.getStartIndex(), next.getStopIndex());
           }
@@ -53,7 +53,7 @@ grammar kod;
       } else {
         tokens.offerFirst(next);
 
-        if (next.getType() != Line) {
+        if (next.getType() != EndOfLine) {
           /* Reset indentation. */
           while (indentationNesting > 0) {
             indent(Dedent, next.getStartIndex(), next.getStopIndex());
@@ -84,8 +84,8 @@ grammar kod;
   /* Used so that we can always expect an empty line before the EOF. */
   private void line(int start, int end) {
     Pair<TokenSource, CharStream> source = new Pair<TokenSource, CharStream>(this, _input);
-    CommonToken t = new CommonToken(source, Line, Token.DEFAULT_CHANNEL, start, end);
-    t.setText("Injected line");
+    CommonToken t = new CommonToken(source, EndOfLine, Token.DEFAULT_CHANNEL, start, end);
+    t.setText("Injected EOL");
     tokens.offerFirst(t);
   }
 }
@@ -231,7 +231,7 @@ initialiser
   ;
 
 separator
-  : Line
+  : EndOfLine
   | Semicolon
   ;
 
@@ -631,7 +631,7 @@ IgnoreLine
 /* Let the lexer recognise newlines. These must not be redirected to a HIDDEN
  * channel as some rules rely on the Line token during the parsing phase.
  */
-Line
+EndOfLine
   : '\r'? '\n' | '\r'
   ;
 
