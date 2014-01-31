@@ -2,14 +2,14 @@ let value := True
 assert value is Bool
 
 # Check for reference equality/inequality.
-x === y
-x !== y
+x == y
+x /== y
 
 # Using operator `is' on values, yields its type.
 1 is Int
 
 # Same as:
-typeOf 1 == Int
+typeOf 1 = Int
 
 # Types are values too. Their type is the built-in class `Type'.
 Int is Type

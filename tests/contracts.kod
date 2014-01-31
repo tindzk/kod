@@ -35,25 +35,25 @@ class BlockNode extends Node:
 	def Node moveAfter(Node from, Node? to, BlockNode destBlock, Node destOffset):
 		require:
 			self.contains(from)
-			to == None or (from.compare(to) >= 0 and self.contains(to))
+			to = None or (from.compare(to) >= 0 and self.contains(to))
 			destBlock.contains(destOffset)
 
 		ensure:
 			self.contains(result)
 
 		Node? cur := from
-		while cur != None:
+		while cur /= None:
 			Node? next := cur.next
 			self.detach(cur, False)
 			destBlock.append(destOffset, cur)
 			destOffset := cur
-			if cur == to:
+			if cur = to:
 				break
 			cur := next
 		return destOffset
 
 	def Int count():
 		ensure:
-			self.first == None => result == 0
+			self.first = None => result = 0
 
 		return self.count(self)

@@ -35,7 +35,7 @@ class Main:
 	public    read Int age  := 20
 
 # Only accept non-red colours as valid ones.
-type ValidColour c is Colour = (c != Colour.Red)
+type ValidColour c is Colour = (c /= Colour.Red)
 
 abstract class Shape:
 	# All attributes must have default values.
@@ -52,7 +52,7 @@ class Circle(Int radius) extends Shape:
 	self.area := back * radius
 
 	def draw(Graphics g):
-		if self.fillColour == None:
+		if self.fillColour = None:
 			g.drawOval(0, 0, radius / 2, radius / 2)
 		else:
 			g.setColour(fillColour)
@@ -60,7 +60,7 @@ class Circle(Int radius) extends Shape:
 
 class Square(Int width) extends Shape:
 	def draw(Graphics g):
-		if self.fillColour == None:
+		if self.fillColour = None:
 			g.drawRect(0, 0, width, width)
 		else:
 			g.setColour(fillColour)
@@ -119,5 +119,5 @@ let shape := Square(100)
 shape.fillColour := Colour.Blue
 let colour := shape.fillColour
 let colour2 := shape.fillColour()
-assert colour == colour2
+assert colour = colour2
 shape.fillColour(Colour.Red)

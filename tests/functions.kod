@@ -16,12 +16,12 @@ def addOne(i) = i + 1
 
 # Recursive method:
 def Int f(Int x):
-	if x == 0: return 5
-	else:      return x + f(0)
+	if x = 0: return 5
+	else:     return x + f(0)
 
 # Shorter:
-def f(x) = x == 0 ? 5 \
-	              : x + f(0)
+def f(x) = x = 0 ? 5 \
+	             : x + f(0)
 
 # Functions with Unicode identifiers.
 def привет():

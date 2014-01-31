@@ -49,8 +49,8 @@ ConnState state := ConnState.Connect # Address directly.
 # and extend from the class `Enumeration'.
 
 # Due to inheriting pred() and succ() from `Ordinal' the following is allowed:
-Month.pred(Month.Jan) == Undefined
-Month.succ(Month.Jan) == Month.Feb
+Month.pred(Month.Jan) = Undefined
+Month.succ(Month.Jan) = Month.Feb
 
 # We can also construct a list using ranges:
 [Month.Jan .. Month.Dec]
@@ -60,18 +60,18 @@ Month.succ(Month.Jan) == Month.Feb
 
 # As enumerations implement the trait `Bounded', we can access the first and the
 # last element like this:
-Month.minBound() == Month.Jan
-Month.maxBound() == Month.Dec
+Month.minBound() = Month.Jan
+Month.maxBound() = Month.Dec
 
-# Enumerations inherit the operators == and != from `Equal':
-Month.Jan != Month.Sun and Month.Jan == Month.Dec
+# Enumerations inherit the operators = and /= from `Equal':
+Month.Jan /= Month.Sun and Month.Jan = Month.Dec
 
 # ...and also comparison operators from `Ordering':
-Month.Jan > Month.Mar == False
-Monday.Jan.compare(Month.Feb) == Ordering.LessThan
+Month.Jan > Month.Mar = False
+Monday.Jan.compare(Month.Feb) = Ordering.LessThan
 
 # Shorter:
-Monday.Jan <=> Month.Feb == Ordering.LessThan
+Monday.Jan <=> Month.Feb = Ordering.LessThan
 
 # Check occurence in lists:
-Month.Dec in [Month.Jan .. Month.Mar] == False
+Month.Dec in [Month.Jan .. Month.Mar] = False

@@ -99,7 +99,7 @@ class Point(Int x, Int y) with Similarity:
 	# Implements a trait method without body, therefore no `override' needed.
 	def Bool isSimilar(Object value):
 		match value:
-			is Point(p, q): return self.x == p and self.y == q
+			is Point(p, q): return self.x = p and self.y = q
 			or: return False
 
 class TraitsTest:

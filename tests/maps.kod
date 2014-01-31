@@ -8,7 +8,7 @@ let names := {
 }
 
 # Infers the following type:
-typeOf names == {Int: Str}
+typeOf names = {Int: Str}
 
 # Therefore, we could also write, bypassing the type inference:
 {Int: Str} names := { 0: "Neil Caffrey", 1: "Peter Burke" }

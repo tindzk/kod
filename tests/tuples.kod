@@ -2,7 +2,7 @@
 ("first", 2, True)
 
 # Access first element of the tuple.
-("first", 2, True)[0] == "first"
+("first", 2, True)[0] = "first"
 
 # Access second element of the tuple.
 let tuple := ("first", 2, True)
@@ -17,7 +17,7 @@ tuple.join()
 # Accessing tuple values by their indexes can be somewhat cumbersome. To
 # alleviate this, there are named tuples:
 let tuple := (width: 3, length: 1.5, colour: "orange")
-tuple.length == 1.5
+tuple.length = 1.5
 
 # Tuples can also be used in lists:
 let list := [
@@ -48,9 +48,9 @@ list[0].address
 # Extract a tuple.
 let tuple := ("a", 1, True)
 let (a, b, c) := tuple
-assert a == 1
-assert b == True
-assert c == "a"
+assert a = 1
+assert b = True
+assert c = "a"
 
 # Extract a tuple partially.
 let tuple := ("a", 1, True)

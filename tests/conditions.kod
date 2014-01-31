@@ -2,9 +2,9 @@
 # if..else*..else? condition
 # --------------------------
 def action(Str s):
-	if s == "hello":
+	if s = "hello":
 		println("Hello World.")
-	else s == "kod":
+	else s = "kod":
 		println("kod rocks.")
 	else:
 		println("")
@@ -13,16 +13,16 @@ def action(Str s):
 # expr? then : else  expression
 # -----------------------------
 def test(Str s) =
-	s == "hello" ? "Hello World" : ""
+	s = "hello" ? "Hello World" : ""
 
 # ------------------
 # a => b implication
 # ------------------
 Str s := "hello"
-assert s == "hello" => test(s) == "Hello World"
+assert s = "hello" => test(s) = "Hello World"
 
 s := ""
-assert s != "hello" => test(s) == ""
+assert s /= "hello" => test(s) = ""
 
 # -----------
 # or operator
@@ -53,7 +53,7 @@ let val := b ?: 10
 # -------------------
 
 # a -> b <=> not(a and not b) <=> not a or b
-# b is only evaluated if a == True.
+# b is only evaluated if a = True.
 
 if not (hasReturnValue -> terminates):
 	raise CompileException("Method needs a return or throw statement that is always reachable.", position)

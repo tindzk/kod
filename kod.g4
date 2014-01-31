@@ -456,9 +456,9 @@ expression
   | expression 'xor' expression
   | expression 'nor' expression
   | expression
-    ('=='<assoc=right>
-    |'!='<assoc=right>
-    |'<=>'<assoc=right>
+    ('='<assoc=right>   /* Value equality. */
+    |'/='<assoc=right>  /* Value inequality. */
+    |'<=>'<assoc=right> /* Value comparison. */
     )
     expression
 
@@ -470,8 +470,8 @@ expression
   | expression 'as' expression
   | expression '..' expression?
   | expression
-    ('==='<assoc=right>
-    |'!=='<assoc=right>)
+    ('=='<assoc=right>   /* Address equality. */
+    |'/=='<assoc=right>) /* Address inequality. */
     expression
 
   /* Other expressions. */

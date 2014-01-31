@@ -35,7 +35,7 @@ Int val2 := b # Unboxes automatically. When the value is None, a runtime-time
 let val := a ?: 10
 
 # This is short for (with the difference that `a' gets only evaluated once):
-let val := a != None ? a : 10
+let val := a /= None ? a : 10
 let val := a ? a : 10
 
 # The RHS of the ?: operation can also be a statement. This is useful for error
