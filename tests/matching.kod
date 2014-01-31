@@ -71,23 +71,23 @@ def printColour(Colour? c):
 			println("B: ${col.blue}")
 		or: println("Invalid color")
 
-let c = Red()
+let c := Red()
 match c:
 	is Red: System.out.println("red")
 	is Blue: System.out.println("blue")
 	or: System.out.println("some other colour")
 
 # Use matching for implicit casting.
-Object obj = performOperation()
-Colour? c = None
+Object obj := performOperation()
+Colour? c := None
 match obj:
-	is Colour x: c = x
+	is Colour x: c := x
 
 # Shorter:
-c = obj is Colour ? obj as Colour : None
+c := obj is Colour ? obj as Colour : None
 
 # If there is an explicit type check (using `is'), the `as' operator can be dropped:
-c = obj is Colour ? obj : None
+c := obj is Colour ? obj : None
 
 printColour(Red(100))
 printColour(Blue(220))

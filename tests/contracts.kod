@@ -41,15 +41,15 @@ class BlockNode extends Node:
 		ensure:
 			self.contains(result)
 
-		Node? cur = from
+		Node? cur := from
 		while cur != None:
-			Node? next = cur.next
+			Node? next := cur.next
 			self.detach(cur, False)
 			destBlock.append(destOffset, cur)
-			destOffset = cur
+			destOffset := cur
 			if cur == to:
 				break
-			cur = next
+			cur := next
 		return destOffset
 
 	def Int count():

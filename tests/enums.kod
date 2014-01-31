@@ -32,18 +32,18 @@ enum ConnState is {
 # Usage
 # -----
 
-Age? age = Age(18)
-Age? age2 = 18 # Implicit.
+Age? age := Age(18)
+Age? age2 := 18 # Implicit.
 
-Name name = "Joe Doe" # Compile-time error.
+Name name := "Joe Doe" # Compile-time error.
 
 # Enumerations are iterable.
 for age in Age:
 	println(age)
 
-ConnState state = ConnState[0] # Access first element.
-ConnState? state = ConnState(0x03) # Resolve by value. None if not found.
-ConnState state = ConnState.Connect # Address directly.
+ConnState state := ConnState[0] # Access first element.
+ConnState? state := ConnState(0x03) # Resolve by value. None if not found.
+ConnState state := ConnState.Connect # Address directly.
 
 # Enumerations implement the traits `Equal', `Ordinal', `Ordering', `Bounded'
 # and extend from the class `Enumeration'.

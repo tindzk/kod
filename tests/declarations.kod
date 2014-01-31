@@ -1,29 +1,29 @@
 # When declaring a new variable, a value must always be bound.
-Str value = "Hello World"
-Int i = 5
-Bool b = True
+Str value := "Hello World"
+Int i := 5
+Bool b := True
 
 # Changing the value of a previously declared variable.
-i = 6
+i := 6
 
 # Nullable variables must be explicitly denoted accordingly. See nullable.kod.
-Str? value2 = None
+Str? value2 := None
 
 # Declaring variables using type inference involves the use of the `let' keyword.
-let i = 5
-let b = True
+let i := 5
+let b := True
 
 # The type was statically determined and cannot be changed. Only Boolean values
 # are valid for the variable `b'.
-b = False
+b := False
 
 # Assigning None to an untyped variable is invalid as the type cannot be inferred.
-let value3 = None
+let value3 := None
 
 # Tuple unpacking.
-let (c, d) = (1, "Hello World")
+let (c, d) := (1, "Hello World")
 
 # Swap the values of x and y.
-Int x = 2
-Int y = 3
-(x, y) = (y, x)
+Int x := 2
+Int y := 3
+(x, y) := (y, x)

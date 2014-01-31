@@ -2,7 +2,7 @@
 # be unique. For each key, there can only be one value. Also, the order of the
 # entries is not defined.
 
-let names = {
+let names := {
 	0: "Neil Caffrey",
 	1: "Peter Burke"
 }
@@ -11,10 +11,10 @@ let names = {
 typeOf names == {Int: Str}
 
 # Therefore, we could also write, bypassing the type inference:
-{Int: Str} names = { 0: "Neil Caffrey", 1: "Peter Burke" }
+{Int: Str} names := { 0: "Neil Caffrey", 1: "Peter Burke" }
 
 # {Int: Str} is a shortcut for Map<Int, Str>
-Map<Int, Str> names = {
+Map<Int, Str> names := {
 	0: "Neil Caffrey",
 	1: "Peter Burke"
 }
@@ -23,7 +23,7 @@ Map<Int, Str> names = {
 names.add(2, "Linus Torvalds")
 
 # Similarly, the index operator could be used.
-names[2] = "Linus Torvalds"
+names[2] := "Linus Torvalds"
 
 # add() is overloaded and may also take a map.
 names.add({}) # Do not add anything.
@@ -31,4 +31,4 @@ names.add({2: "Linus Torvalds", 3: "Bill Gates"})
 
 # Adding one or more elements using the + operator (does not modify the original
 # map).
-let names2 = names + { 2: "Linus Torvalds" }
+let names2 := names + { 2: "Linus Torvalds" }

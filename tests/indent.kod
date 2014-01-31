@@ -20,7 +20,7 @@ def String apply(String cur, List<String (String input)> functions):
 Int add(Int a, Int b):
 	return a
 
-let nine = add(4, 5)
+let nine := add(4, 5)
 
 a()
 b()

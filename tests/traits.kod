@@ -30,7 +30,7 @@ class HelloWorld with Hello, World: # Say does not need to be listed here. It is
 
 class Main:
 	def main():
-		let o = HelloWorld()
+		let o := HelloWorld()
 		o.say() # Hello World!
 		(o as World).say() # Hello World
 		(o as Hello).say() # Hello
@@ -58,20 +58,20 @@ class RedShinyBall extends Ball with Red, Shiny
 
 class Test:
 	def test():
-		let ball = RedShinyBall()
+		let ball := RedShinyBall()
 		println(ball.toStr())
 
 # ---
 
 # Define common attributes in the trait `Bounding'.
 trait Bounding:
-	[Str] descr = []
+	[Str] descr := []
 
-	Int x = 0
-	Int y = 0
+	Int x := 0
+	Int y := 0
 
-	Int width = 0
-	Int height = 0
+	Int width := 0
+	Int height := 0
 
 trait Moveable extends Bounding:
 	self.descr.add("moveable")
@@ -103,7 +103,7 @@ class Point(Int x, Int y) with Similarity:
 			or: return False
 
 class TraitsTest:
-	let p1 = Point(2, 3)
-	let p2 = Point(2, 4)
+	let p1 := Point(2, 3)
+	let p2 := Point(2, 4)
 	println(p1.isNotSimilar(p2))
 	println(p1.isNotSimilar(1234))

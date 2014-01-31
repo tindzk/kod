@@ -4,18 +4,18 @@
 
 # Generate the Fibonacci sequence using a generator.
 def Generator fibonacci():
-	let (i, j) = (0, 1)
+	let (i, j) := (0, 1)
 	while True:
 		yield i
-		(i, j) = (j, i + j)
+		(i, j) := (j, i + j)
 
 # We can use the generator as an iterator.
 for number in fibonacci():
 	println(number)
 
 # The result of fibonacci() is callable.
-Generator fib = fibonacci()
-[Int] numbers = [fib() for i in 0..100]
+Generator fib := fibonacci()
+[Int] numbers := [fib() for i in 0..100]
 
 # As Generator implements the trait `Collection', we can shorten this to:
-[Int] numbers = fib.take(100)
+[Int] numbers := fib.take(100)

@@ -21,10 +21,10 @@ def <T> List<T> reverse(List<T> elems) = elems.reverse()
 # Shorter:
 def <T> [T] reverse([T] elems) = elems.reverse()
 
-Pair<Str, Str> pair = Pair<Str, Str>("key", "value")
-Pair<Str, Str> pair = Pair("key", "value")
-let pair = Pair("key", "value")
+Pair<Str, Str> pair := Pair<Str, Str>("key", "value")
+Pair<Str, Str> pair := Pair("key", "value")
+let pair := Pair("key", "value")
 
-let list = ArrayList<Str>()
+let list := ArrayList<Str>()
 v.add("test")
-let s = list.get(0)
+let s := list.get(0)

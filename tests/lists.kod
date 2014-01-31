@@ -8,22 +8,22 @@
 [1, 2, 3]
 
 # Declare variable with a list.
-[Int] list = [1, 2, 3, 4, 5]
+[Int] list := [1, 2, 3, 4, 5]
 
 # Shortcut for:
-List<Int> list = [1, 2, 3, 4, 5]
+List<Int> list := [1, 2, 3, 4, 5]
 
 list.first() == 1
 list.last() == 5
 list.at(2) == 3
 
-[Str] list2 = ["Hello", "World"]
-[Char] list3 = ['a', 'b', 'c']
+[Str] list2 := ["Hello", "World"]
+[Char] list3 := ['a', 'b', 'c']
 
 # Construct lists of floats.
-let fl = [1, 2, 3, 4, 5] as [Float]
-[Float] fl2 = [1, 2, 3, 4, 5]
-[Float] fl2 = [1.0, 2.0, 3.0, 4.0, 5.0]
+let fl := [1, 2, 3, 4, 5] as [Float]
+[Float] fl2 := [1, 2, 3, 4, 5]
+[Float] fl2 := [1.0, 2.0, 3.0, 4.0, 5.0]
 
 # Construct list from range.
 [18..28]
@@ -45,15 +45,15 @@ let fl = [1, 2, 3, 4, 5] as [Float]
 [1..].take(10)
 
 # `..' is an operator defined on an Int. Therefore the above is equivalent to:
-Int a = 18
-Int b = 28
-[Int] res = a .. b
+Int a := 18
+Int b := 28
+[Int] res := a .. b
 
 # The resulting list is internally optimised to evaluate upon access, allowing
 # the creation of infinite lists.
-[Int] res = 18 .. Integer.Infinity
+[Int] res := 18 .. Integer.Infinity
 # Shorter:
-[Int] res = 18 ..
+[Int] res := 18 ..
 
 # `..' is also defined on enumerations (see enums.kod).
 EnumType.FirstElement .. EnumType.LastElement
@@ -61,7 +61,7 @@ EnumType.FirstElement .. EnumType.LastElement
 # `in' is a right-evaluated operator. It checks whether the value on the
 # LHS is existent in the list of the RHS. Currently, `in' is the only
 # right-evaluated operator.
-let i = 3
+let i := 3
 assert i in [2..10]
 
 # No new operators can be defined, only those defined in the grammar are
@@ -71,11 +71,11 @@ assert i in [2..10]
 assert i in 2..10
 
 # List comprehensions are supported:
-[x * 2 for x in 1..10 if x mod 2 == 0] = [4, 8, 12, 16, 20]
+[x * 2 for x in 1..10 if x mod 2 == 0] == [4, 8, 12, 16, 20]
 
 # With the subset operator, parts of a list can be retrieved.
-let str = "hello world"
-let sub = str[1:3]
+let str := "hello world"
+let sub := str[1:3]
 
 # Other methods that are defined on a list:
 [1, 2, 3].sum()

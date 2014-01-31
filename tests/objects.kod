@@ -6,7 +6,7 @@
 
 object Main extends Logging:
 	def main([Str] args):
-		let conf = Conf(args)
+		let conf := Conf(args)
 
 		if conf.help.apply():
 			conf.printHelp()

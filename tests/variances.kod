@@ -17,15 +17,15 @@ class Stack<+A>:
 class Components<+V extends Component> extends HashMap<Str, V>
 
 # Usage of the covariant stack.
-Stack<Str> stack = Stack<Str>()
+Stack<Str> stack := Stack<Str>()
 s.push(MyStr("Hello"))
 s.push("World")
 
-Stack<MyStr> stack2 = Stack<mYStr>()
+Stack<MyStr> stack2 := Stack<mYStr>()
 s.push(MyStr("Hello"))
 s.push(MyStr("World"))
-stack = stack2 # Valid due to subtyping relationship.
+stack := stack2 # Valid due to subtyping relationship.
 
-let map = Components<JLabel>()
+let map := Components<JLabel>()
 map.add({ "lbl1": JLabel(),
 		  "lbl2": JLabel() })

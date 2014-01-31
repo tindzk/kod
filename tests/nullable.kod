@@ -20,28 +20,28 @@
 # cannot be inferred if the default value of the variable is None. This cannot
 # be solved as the following is always ambiguous (`a' could be of any type).
 #
-#  let a = None
+#  let a := None
 #
 # In this case, the developer needs to specify the type explicitly:
-Int? b = None
+Int? b := None
 
-let val  = b # val is of type Int?.
-Int val2 = b # Unboxes automatically. When the value is None, a runtime-time
-             # exception is thrown.
+let val  := b # val is of type Int?.
+Int val2 := b # Unboxes automatically. When the value is None, a runtime-time
+              # exception is thrown.
 
 # As to make unboxing safer, the Elvis operator was introduced. It only unboxes
 # the expression if it does not evaluate to None. Otherwise the given
 # alternative value is taken.
-let val = a ?: 10
+let val := a ?: 10
 
 # This is short for (with the difference that `a' gets only evaluated once):
-let val = a != None ? a : 10
-let val = a ? a : 10
+let val := a != None ? a : 10
+let val := a ? a : 10
 
 # The RHS of the ?: operation can also be a statement. This is useful for error
 # handling. Considering that find() returns User?, `user' is correctly inferred
 # to be of the type User. If unboxing fails, a UserNotFound exception is thrown.
-let user = User.find("Linus Torvalds") ?: raise UserNotFound()
+let user := User.find("Linus Torvalds") ?: raise UserNotFound()
 
 # The Safe Access operator allows accessing attributes and methods of a
 # nullable value while avoiding an exception if the value is null. It just
@@ -49,8 +49,8 @@ let user = User.find("Linus Torvalds") ?: raise UserNotFound()
 # The operator is particularly useful when following a chain of nullable
 # references as it significantly reduces the number of None-checks.
 
-User? user = User.find("Linus Torvalds")
-String? street = user?.address?.street # street is null if user, address or street is null.
+User? user := User.find("Linus Torvalds")
+String? street := user?.address?.street # street is null if user, address or street is null.
 
 # Other examples:
 foo?.bar

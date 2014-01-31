@@ -1,4 +1,4 @@
-let value = True
+let value := True
 assert value is Bool
 
 # Check for reference equality/inequality.

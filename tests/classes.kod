@@ -15,32 +15,32 @@ class ClassWithMethods:
 		return "b"
 	def methodWithResult2() = "b"
 
-class Date(Number day, Number month, Number year = 2012):
+class Date(Number day, Number month, Number year := 2012):
 	# These statements are executed when instantiating the class.
-	day   = 1
-	month = 12
+	day   := 1
+	month := 12
 
 	def Date getSystemDate() = Date(29, 12)
 	def (Number, Number) getMonthYearTuple() = (self.month, self.year)
 
 class MemberInit(Number day):
 	# Initialisation of member variabes can comprise expressions.
-	self.day = day < 0 or day > 31 ? 1 : day
+	self.day := day < 0 or day > 31 ? 1 : day
 
 class Main:
 	# Declare two member variables. Access to the attribute `name' is only
 	# granted to this class and its super classes. Due to the `read' qualifier
 	# all classes except for this one have solely read-only access.
-	protected read Str name = "Max Mustermann"
-	public    read Int age  = 20
+	protected read Str name := "Max Mustermann"
+	public    read Int age  := 20
 
 # Only accept non-red colours as valid ones.
 type ValidColour c is Colour = (c != Colour.Red)
 
 abstract class Shape:
 	# All attributes must have default values.
-	ValidColour? fillColour = None
-	Double area = 0.0
+	ValidColour? fillColour := None
+	Double area := 0.0
 
 	# Abstract methods are those without a body.
 	def draw(Graphics g)
@@ -48,8 +48,8 @@ abstract class Shape:
 class Circle(Int radius) extends Shape:
 	# If private variables are not used later on by any method, the memory will
 	# be freed right after their usage here.
-	private let back = Math.Pi * radius
-	self.area = back * radius
+	private let back := Math.Pi * radius
+	self.area := back * radius
 
 	def draw(Graphics g):
 		if self.fillColour == None:
@@ -82,16 +82,16 @@ class Apple extends Fruit:
 
 # Class with multiple constructors.
 class Point:
-	Int x = 10
-	Int y = 10
+	Int x := 10
+	Int y := 10
 
 	def self(Int x, Int y):
-		self.x = x
-		self.y = y
+		self.x := x
+		self.y := y
 
 	def self(Int x):
-		self.x = x
-		self.y = 0
+		self.x := x
+		self.y := 0
 
 # CustomPoint inherits all constructors.
 class CustomPoint extends Point
@@ -107,7 +107,7 @@ class CustomPoint2 extends Point:
 class CustomPoint3(Int x) extends Point(x + 1)
 
 # Instantiating class `Date'.
-let date = Date(12, 1)
+let date := Date(12, 1)
 
 # Calling getSystemDate with no arguments.
 date.getSystemDate()
@@ -115,9 +115,9 @@ date.getSystemDate()
 # This is equivalent to:
 Date.getSystemDate(date)
 
-let shape = Square(100)
-shape.fillColour = Colour.Blue
-let colour = shape.fillColour
-let colour2 = shape.fillColour()
+let shape := Square(100)
+shape.fillColour := Colour.Blue
+let colour := shape.fillColour
+let colour2 := shape.fillColour()
 assert colour == colour2
 shape.fillColour(Colour.Red)

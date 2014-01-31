@@ -14,7 +14,7 @@ for i in Range(1, 100, 5):
 	print(i)
 
 # Define a list of tuples.
-let users = [
+let users := [
 	("Peter", "Burke"),
 	("Neil", "Caffrey")
 ]
@@ -24,9 +24,9 @@ for (firstName, lastName) in users:
 	println("$firstName.$lastName")
 
 # Zipping lists:
-let ages = [1, 2]
+let ages := [1, 2]
 for (name, age) in users.zip(ages):
-	n = name.join(" ")
+	n := name.join(" ")
 	println("$n: $age")
 
 # Infinite lists and iterators can be zipped as well:
@@ -35,18 +35,18 @@ for (a, b) in [1..].zip(3..):
 
 # for..where: Execute the loop body for all iterations where the condition
 # evaluates to True.
-let rate = 50.75
+let rate := 50.75
 for r in rates where distance <= r.distance:
-	rate = r.rate
+	rate := r.rate
 	break
 
 # for..while: Execute the loop as long as the condition evaluates to True.
 for r in rates while distance <= r.distance:
-	rate = r.rate
+	rate := r.rate
 	break
 
 # There is a loop construct that executes its body $x times with $x being an
 # Integer expression.
-let num = 5
+let num := 5
 repeat num:
 	println("Iteration $num")

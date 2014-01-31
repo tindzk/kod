@@ -222,7 +222,7 @@ variableOrInitialiser
  * expressions (cf. `initialiser').
  */
 parameterDeclaration
-  : type? Identifier ('=' initialiser)?
+  : type? Identifier (':=' initialiser)?
   ;
 
 initialiser
@@ -253,10 +253,10 @@ variableDeclaration
   : (type | 'let') Identifier '(' (parameterDeclaration (',' parameterDeclaration)*)? ')' codeBlock
 
   /* Variable declaration without type inference. */
-  | type Identifier ('[' tuple ']')? '=' expression
+  | type Identifier ('[' tuple ']')? ':=' expression
 
   /* Variable declaration with type inference. */
-  | 'let' (Identifier | tuple) ('[' tuple ']')? '=' expression
+  | 'let' (Identifier | tuple) ('[' tuple ']')? ':=' expression
   ;
 
 codeBlock
@@ -321,7 +321,7 @@ statement
   | variableDeclaration
 
   /* Value assignment. */
-  | expression '=' expression
+  | expression ':=' expression
 
   /* Short-cirucit expression. The LHS must evaluate to a Boolean value. */
   | expression 'or' controlStatement
@@ -414,7 +414,7 @@ enumMapItem
   ;
 
 withAtom
-  : Identifier untypedParameters? '=' expressionBlock
+  : Identifier untypedParameters? ':=' expressionBlock
   | Identifier untypedParameters? ':' statementBlock
   ;
 
