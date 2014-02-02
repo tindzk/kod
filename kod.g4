@@ -483,6 +483,7 @@ expression
 /* Defined recursively to support tuple unpacking independently from the depth. */
 untypedParameters
   : Identifier
+  | '_'
   | '(' (untypedParameters (',' untypedParameters)*)? ')'
   ;
 
