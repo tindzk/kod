@@ -621,14 +621,9 @@ EndOfLine
   : '\r'? '\n' | '\r'
   ;
 
-// Match anything between /* and */.
+/* Filter out all single- and multi-line comments. */
 Comment
-  : '/*' .*? '*/' -> channel(HIDDEN)
-  ;
-
-/* Filter out all comments. */
-LineComment
-  : '#' ~[\r\n]* -> channel(HIDDEN)
+  : ('#' ~[\r\n]* | '{#' .*? '#}') -> channel(HIDDEN)
   ;
 
 /* Toss out whitespaces. */

@@ -1,0 +1,7 @@
+# Single-line comment.
+
+test() # Single-line comment.
+
+{#
+	Multi-line comment.
+#}
