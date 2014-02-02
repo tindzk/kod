@@ -2,16 +2,16 @@
 # bound to a variable name, returned or passed directly.
 
 class ExtendedInt extends Int:
-	def times(Void () c):
+	fn times(Void () c):
 		for i in 1..10: c()
 
 	# `cur' cannot be accessed. It only serves documentation purposes and can
 	# be dropped.
-	def times(Void (Int cur) c):
+	fn times(Void (Int cur) c):
 		for i in 1..10: c(i)
 
 # Define a function for applying recursively a set of functions on a string.
-def Str apply(Str cur, List<Str (Str input)> functions):
+fn Str apply(Str cur, List<Str (Str input)> functions):
 	match functions:
 		# Like in Haskell we chop off the first element (function) and apply the
 		# given string on it. Recursively, we call apply() for the remaining
@@ -20,10 +20,10 @@ def Str apply(Str cur, List<Str (Str input)> functions):
 		is []: return cur
 
 # Another possible type signature here would have been:
-def Str apply(Str cur, [Str (Str input)] functions)
+fn Str apply(Str cur, [Str (Str input)] functions)
 
 # Using higher-order functions the above function could be shortened to:
-def Str apply(Str cur, List<Str (Str input)> functions) =
+fn Str apply(Str cur, List<Str (Str input)> functions) =
 	# The second argument here is an unnamed lambda function taking two parameters.
 	functions.foldLeft(cur, (acc, cur) -> cur(acc))
 

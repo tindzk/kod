@@ -201,7 +201,7 @@ decorator
 
 /* self denotes an alternative constructor. */
 functionDeclaration
-  : decorator* 'def' typeParameters? type? (Identifier | 'self')
+  : decorator* 'fn' typeParameters? type? (Identifier | 'self')
     '(' (parameterDeclaration (',' parameterDeclaration)*)? ')'
     codeBlock?
   ;

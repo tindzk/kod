@@ -9,19 +9,19 @@ class ExtendingParameterisedClass(Int x) extends ParameterisedClass(1, x)
 abstract class AbstractClass
 
 class ClassWithMethods:
-	def methodWithoutResult():
+	fn methodWithoutResult():
 		print("a")
-	def methodWithResult():
+	fn methodWithResult():
 		return "b"
-	def methodWithResult2() = "b"
+	fn methodWithResult2() = "b"
 
 class Date(Number day, Number month, Number year := 2012):
 	# These statements are executed when instantiating the class.
 	day   := 1
 	month := 12
 
-	def Date getSystemDate() = Date(29, 12)
-	def (Number, Number) getMonthYearTuple() = (self.month, self.year)
+	fn Date getSystemDate() = Date(29, 12)
+	fn (Number, Number) getMonthYearTuple() = (self.month, self.year)
 
 class MemberInit(Number day):
 	# Initialisation of member variabes can comprise expressions.
@@ -43,7 +43,7 @@ abstract class Shape:
 	Double area := 0.0
 
 	# Abstract methods are those without a body.
-	def draw(Graphics g)
+	fn draw(Graphics g)
 
 class Circle(Int radius) extends Shape:
 	# If private variables are not used later on by any method, the memory will
@@ -51,7 +51,7 @@ class Circle(Int radius) extends Shape:
 	private let back := Math.Pi * radius
 	self.area := back * radius
 
-	def draw(Graphics g):
+	fn draw(Graphics g):
 		if self.fillColour = None:
 			g.drawOval(0, 0, radius / 2, radius / 2)
 		else:
@@ -59,7 +59,7 @@ class Circle(Int radius) extends Shape:
 			g.fillOval(0, 0, radius / 2, radius / 2)
 
 class Square(Int width) extends Shape:
-	def draw(Graphics g):
+	fn draw(Graphics g):
 		if self.fillColour = None:
 			g.drawRect(0, 0, width, width)
 		else:
@@ -67,29 +67,29 @@ class Square(Int width) extends Shape:
 			g.fillRect(0, 0, width, width)
 
 class Fruit:
-	def worth() = 5
+	fn worth() = 5
 
 class Apple extends Fruit:
 	# When a method with the same name occurs in the super class, the `override'
 	# keyword must be specified.
-	override def worth() = 1
+	override fn worth() = 1
 
 # Calling a super method or accessing super values:
 class Fruit:
-	def worth() = 5
+	fn worth() = 5
 class Apple extends Fruit:
-	override def worth() = super.worth() + 1
+	override fn worth() = super.worth() + 1
 
 # Class with multiple constructors.
 class Point:
 	Int x := 10
 	Int y := 10
 
-	def self(Int x, Int y):
+	fn self(Int x, Int y):
 		self.x := x
 		self.y := y
 
-	def self(Int x):
+	fn self(Int x):
 		self.x := x
 		self.y := 0
 
@@ -98,7 +98,7 @@ class CustomPoint extends Point
 
 # CustomPoint2 inherits all constructors and overrides the first one.
 class CustomPoint2 extends Point:
-	override def self(Int x, Int y):
+	override fn self(Int x, Int y):
 		super(x, y)
 		println("$x.$y")
 

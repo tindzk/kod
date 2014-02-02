@@ -3,7 +3,7 @@
 # complex state-oriented iteration techniques such as binary tree traversal.
 
 # Generate the Fibonacci sequence using a generator.
-def Generator fibonacci():
+fn Generator fibonacci():
 	let (i, j) := (0, 1)
 	while True:
 		yield i

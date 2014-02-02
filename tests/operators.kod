@@ -1,7 +1,7 @@
 # The following trait is defined internally by kod and used for some type
 # classes such as `Enumeration'.
 trait Ordering<T>:
-	def Int compare(T value)
+	fn Int compare(T value)
 	op Bool < (T value) = self.compare(value) < 0
 	op Bool > (T value) = self.compare(value) > 0
 	op Bool <=(T value) = self.compare(value) <= 0
