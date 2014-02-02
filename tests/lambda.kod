@@ -3,12 +3,12 @@
 
 class ExtendedInt extends Int:
 	fn times(Void () c):
-		for i in 1..10: c()
+		[1..10].each(_ -> c())
 
 	# `cur' cannot be accessed. It only serves documentation purposes and can
 	# be dropped.
 	fn times(Void (Int cur) c):
-		for i in 1..10: c(i)
+		[1..10].each(i -> c(i))
 
 # Define a function for applying recursively a set of functions on a string.
 fn Str apply(Str cur, List<Str (Str input)> functions):
