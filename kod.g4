@@ -413,18 +413,8 @@ enumMapItem
   : Identifier ('=' literal)?
   ;
 
-withAtom
-  : Identifier untypedParameters? ':=' expressionBlock
-  | Identifier untypedParameters? ':' statementBlock
-  ;
-
-with
-  : 'with' withAtom (',' withAtom)*
-  | 'with:' separator+ Indent (withAtom | separator)* Dedent
-  ;
-
 arguments
-  : '(' expressionList? ')' with?
+  : '(' expressionList? ')'
   ;
 
 expression

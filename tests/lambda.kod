@@ -86,22 +86,6 @@ filtered := elems.filter(_ <= 3)
 # Another example:
 elems.reduce(0, (acc, cur) -> acc + cur)
 
-# The `with' keyword allows to externally declare the lambda function:
-elems.reduce(0, f) with f := (acc, cur) -> acc + cur
-
-# You can set more than one variable within the `with' part.
-elems.reduce(initial, f) with initial := 0, f(acc, cur) := acc + cur
-
-# With indention this could be aligned in a more readable way:
-elems.reduce(initial, f) with:
-	initial := 0
-	f(acc, cur) := acc + cur
-
-# `with' allows to pass a lambda function with multiple statements:
-filtered := elems.filter(f) with f:
-	let z := x * 2
-	z > 5 ? x <= 3 : x <= 5
-
 # More examples with higher-order functions:
 elems.map(x -> x * x) # Squares.
 elems.map(_ * _) # Shorter (using placeholders).
@@ -111,12 +95,10 @@ elems.foldLeft(0, (acc, cur) -> acc + cur) # Sum.
 [Int] list := [1, 2, 3, 4, 5].reduce((x, y) -> x * y)
 
 # Use the above declared times() methods.
-ExtendedInt(10).times(f) with f: # f without arguments.
-	println("Iteration")
+ExtendedInt(10).times(() -> println("Iteration"))
 ExtendedInt(10).times(println) # Prints the iteration number.
 
 list := ["red", "yellow", "orange"]
-list.each(f) with f(color) := println(color)
 list.each(println(_))
 
 # Sort a list of files by timestamp (<=> is explained in operators.kod):
