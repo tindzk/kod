@@ -8,22 +8,18 @@
 [1, 2, 3]
 
 # Declare variable with a list.
-[Int] list := [1, 2, 3, 4, 5]
-
-# Shortcut for:
-List<Int> list := [1, 2, 3, 4, 5]
+let list := [1, 2, 3, 4, 5] # Type is [Int] or List<Int>.
 
 list.first() = 1
 list.last() = 5
 list.at(2) = 3
 
-[Str] list2 := ["Hello", "World"]
-[Char] list3 := ['a', 'b', 'c']
+let list2 := ["Hello", "World"] # Type is [Str].
+let list3 := ['a', 'b', 'c'] # Type is [Char].
 
 # Construct lists of floats.
 let fl := [1, 2, 3, 4, 5] as [Float]
-[Float] fl2 := [1, 2, 3, 4, 5]
-[Float] fl2 := [1.0, 2.0, 3.0, 4.0, 5.0]
+let fl2 := [1.0, 2.0, 3.0, 4.0, 5.0]
 
 # Construct list from range.
 [18..28]
@@ -45,15 +41,15 @@ let fl := [1, 2, 3, 4, 5] as [Float]
 [1..].take(10)
 
 # `..' is an operator defined on an Int. Therefore the above is equivalent to:
-Int a := 18
-Int b := 28
-[Int] res := a .. b
+let a := 18
+let b := 28
+let res := a .. b # Type is [Int].
 
 # The resulting list is internally optimised to evaluate upon access, allowing
 # the creation of infinite lists.
-[Int] res := 18 .. Integer.Infinity
+let res := 18 .. Integer.Infinity
 # Shorter:
-[Int] res := 18 ..
+let res := 18 ..
 
 # `..' is also defined on enumerations (see enums.kod).
 EnumType.FirstElement .. EnumType.LastElement

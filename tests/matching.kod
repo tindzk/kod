@@ -78,8 +78,8 @@ match c:
 	or: System.out.println("some other colour")
 
 # Use matching for implicit casting.
-Object obj := performOperation()
-Colour? c := None
+let obj := performOperation()
+let c := None as Colour?
 match obj:
 	is Colour x: c := x
 

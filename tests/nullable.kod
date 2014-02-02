@@ -23,10 +23,10 @@
 #  let a := None
 #
 # In this case, the developer needs to specify the type explicitly:
-Int? b := None
+let b := None as Int?
 
 let val  := b # val is of type Int?.
-Int val2 := b # Unboxes automatically. When the value is None, a runtime-time
+let val2 := b # Unboxes automatically. When the value is None, a runtime-time
               # exception is thrown.
 
 # As to make unboxing safer, the Elvis operator was introduced. It only unboxes
@@ -49,8 +49,9 @@ let user := User.find("Linus Torvalds") ?: raise UserNotFound()
 # The operator is particularly useful when following a chain of nullable
 # references as it significantly reduces the number of None-checks.
 
-User? user := User.find("Linus Torvalds")
-String? street := user?.address?.street # street is null if user, address or street is null.
+let user := User.find("Linus Torvalds") # The type is User?.
+let street := user?.address?.street # street is null if user, address or street is null.
+                                    # The type is String?.
 
 # Other examples:
 foo?.bar

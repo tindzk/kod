@@ -13,7 +13,7 @@ trait Ordering<T>:
 
 # Implement the trait `Ordering'.
 class Money(Int amount) with Ordering<Money>:
-	Int compare(Money value) =
+	fn Int compare(Money value) =
 		self.amount <=> value.amount
 
 # Overload the plus operator.

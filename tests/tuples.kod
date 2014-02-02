@@ -34,12 +34,6 @@ let list[(name, address, nationality)] := [
 	("Bill Gates", "Medina, WA 98039", "American")
 ]
 
-# Without type inference:
-[(Str, Str, Str)] list[(name, address, nationality)] := [
-	("Linus Torvalds", "Santa Clara, CA 95054", "Finnish"),
-	("Bill Gates", "Medina, WA 98039", "American")
-]
-
 list[0].name
 list[0].address
 

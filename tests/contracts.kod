@@ -41,9 +41,9 @@ class BlockNode extends Node:
 		ensure:
 			self.contains(result)
 
-		Node? cur := from
+		let cur := from as Node?
 		while cur /= None:
-			Node? next := cur.next
+			let next := cur.next
 			self.detach(cur, False)
 			destBlock.append(destOffset, cur)
 			destOffset := cur

@@ -1,13 +1,13 @@
 # When declaring a new variable, a value must always be bound.
-Str value := "Hello World"
-Int i := 5
-Bool b := True
+let value := "Hello World" # Str
+let i := 5 # Int
+let b := True # Bool
 
 # Changing the value of a previously declared variable.
 i := 6
 
 # Nullable variables must be explicitly denoted accordingly. See nullable.kod.
-Str? value2 := None
+let value2 := None as Str?
 
 # Declaring variables using type inference involves the use of the `let' keyword.
 let i := 5
@@ -24,6 +24,6 @@ let value3 := None
 let (c, d) := (1, "Hello World")
 
 # Swap the values of x and y.
-Int x := 2
-Int y := 3
+let x := 2
+let y := 3
 (x, y) := (y, x)

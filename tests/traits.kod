@@ -50,7 +50,7 @@ trait Shiny extends Properties:
 		super.properties() + ["shiny"]
 
 abstract class Ball with Properties:
-	Str toStr():
+	fn Str toStr():
 		return "It's a " + properties().join(", ") + " ball"
 
 # The last added properties() gets called in Ball.
@@ -65,13 +65,13 @@ class Test:
 
 # Define common attributes in the trait `Bounding'.
 trait Bounding:
-	[Str] descr := []
+	let descr := [] as [Str]
 
-	Int x := 0
-	Int y := 0
+	let x := 0
+	let y := 0
 
-	Int width := 0
-	Int height := 0
+	let width := 0
+	let height := 0
 
 trait Moveable extends Bounding:
 	self.descr.add("moveable")

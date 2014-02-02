@@ -31,16 +31,16 @@ class Main:
 	# Declare two member variables. Access to the attribute `name' is only
 	# granted to this class and its super classes. Due to the `read' qualifier
 	# all classes except for this one have solely read-only access.
-	protected read Str name := "Max Mustermann"
-	public    read Int age  := 20
+	protected read let name := "Max Mustermann"
+	public    read let age  := 20
 
 # Only accept non-red colours as valid ones.
 type ValidColour c is Colour = (c /= Colour.Red)
 
 abstract class Shape:
 	# All attributes must have default values.
-	ValidColour? fillColour := None
-	Double area := 0.0
+	let fillColour := None as ValidColour?
+	let area := 0.0
 
 	# Abstract methods are those without a body.
 	fn draw(Graphics g)
@@ -82,8 +82,8 @@ class Apple extends Fruit:
 
 # Class with multiple constructors.
 class Point:
-	Int x := 10
-	Int y := 10
+	let x := 10
+	let y := 10
 
 	fn self(Int x, Int y):
 		self.x := x

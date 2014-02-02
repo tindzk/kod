@@ -247,16 +247,11 @@ typeParameters
   : '<' typeParameter (',' typeParameter)* '>'
   ;
 
-/* A variable must always be initialised with a value. */
+/* A variable must always be initialised with a value. The type is inferred.
+ * If not possible, the `as' keyword must be used.
+ */
 variableDeclaration
-  /* Typed lambda function. */
-  : (type | 'let') Identifier '(' (parameterDeclaration (',' parameterDeclaration)*)? ')' codeBlock
-
-  /* Variable declaration without type inference. */
-  | type Identifier ('[' tuple ']')? ':=' expression
-
-  /* Variable declaration with type inference. */
-  | 'let' (Identifier | tuple) ('[' tuple ']')? ':=' expression
+  : 'let' (Identifier | tuple) ('[' tuple ']')? ':=' expression
   ;
 
 codeBlock
@@ -465,7 +460,7 @@ expression
     expression
 
   /* Other expressions. */
-  | untypedParameters '->' expression /* Lambda expression. */
+  | untypedParameters '->' (expression | statementBlock) /* Lambda expression. */
   | '[' expression 'for' untypedParameters 'in' expression ('if' expression)? ']' /* List comprehension */
   | '(' expression ')'
   ;
