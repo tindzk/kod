@@ -494,8 +494,7 @@ expressionList
 
 literal
   : IntegerLiteral
-  | FloatingPointLiteral
-  | HexLiteral
+  | RealLiteral
   | CharacterLiteral
   | StringLiteral
   | 'None'
@@ -534,7 +533,11 @@ Identifier
   ;
 
 IntegerLiteral
-  : Digit+ Exponent?
+  : (Digit | Letter)+ Exponent? Base?
+  ;
+
+RealLiteral
+  : Digit+ '.' Digit+ Exponent?
   ;
 
 Digit
@@ -545,17 +548,8 @@ Letter
   : [a-zA-Z]
   ;
 
-fragment HexDigit
-  : '0'..'9'
-  | 'a'..'f'
-  ;
-
-FloatingPointLiteral
-  : Digit+ '.' Digit+ Exponent?
-  ;
-
-HexLiteral
-  : '0x' HexDigit+
+fragment Base
+  : '_' Digit+
   ;
 
 fragment Exponent

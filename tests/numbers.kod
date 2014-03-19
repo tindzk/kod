@@ -1,0 +1,12 @@
+# Integer values
+0110101_2  # basis 2
+42         # basis 10
+42e-5      # basis 10
+42e-5_10   # basis 10
+42_10      # basis 10
+0FAB9_16   # basis 16
+01AZ9_36   # basis 36
+
+# Real values
+0.123
+0.123e-10
