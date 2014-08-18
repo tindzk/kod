@@ -6,10 +6,10 @@
 
 # Covariance
 class Stack<+A>:
-	fn push(A elem): pass
-	fn A top(): pass
-	fn pop(): pass
-	fn toStr(): pass
+	push(A elem): pass
+	A top(): pass
+	pop(): pass
+	toStr(): pass
 
 # Due to the +A, there is a subtyping relationship between Stack<Cat> and Stack<Animal>
 # if Cat extends Animal.

@@ -2,14 +2,14 @@
 # syntactical elements.
 
 class Circle(radius):
-	fn draw(g):
+	draw(g):
 		if True:
 			a()
 		else:
 			b()
 
 
-fn String apply(String cur, List<String (String input)> functions):
+String apply(String cur, List<String (String input)> functions):
 	match functions:
 		is hd:tl: return apply(hd(cur), tl)
 		is []: return cur

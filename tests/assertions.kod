@@ -3,6 +3,6 @@
 # disabled when shipping a production version to improve the performance.
 # Therefore, a program must not depend on the assertions being executed.
 
-fn loop(Int i):
+loop(Int i):
 	for i in 1..10:
 		assert i < 10

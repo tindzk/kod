@@ -4,27 +4,27 @@
 # mathematical notation as can be seen in the following examples.
 
 # No type inference:
-fn Int addOne(Int i):
+Int addOne(Int i):
 	return i + 1
 
 # With type inference:
-fn addOne(i):
+addOne(i):
 	return i + 1
 
 # Shorter:
-fn addOne(i) = i + 1
+addOne(i) = i + 1
 
 # Recursive method:
-fn Int f(Int x):
+Int f(Int x):
 	if x = 0: return 5
 	else:     return x + f(0)
 
 # Shorter:
-fn f(x) = x = 0 ? 5 \
+f(x) = x = 0 ? 5 \
 	             : x + f(0)
 
 # Functions with Unicode identifiers.
-fn привет():
+привет():
 	println("привет!")
-fn cześć():
+cześć():
 	println("Cześć!")

@@ -5,7 +5,7 @@
 # This is used for the entrypoint of the application.
 
 object Main extends Logging:
-	fn main([Str] args):
+	main([Str] args):
 		let conf := Conf(args)
 
 		if conf.help.apply():

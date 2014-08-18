@@ -1,11 +1,11 @@
 # The following trait is defined internally by kod and used for some type
 # classes such as `Enumeration'.
 trait Ordering<T>:
-	fn Int compare(T value)
-	op Bool < (T value) = self.compare(value) < 0
-	op Bool > (T value) = self.compare(value) > 0
-	op Bool <=(T value) = self.compare(value) <= 0
-	op Bool >=(T value) = self.compare(value) >= 0
+	Int compare(T value)
+	Bool < (T value) = self.compare(value) < 0
+	Bool > (T value) = self.compare(value) > 0
+	Bool <=(T value) = self.compare(value) <= 0
+	Bool >=(T value) = self.compare(value) >= 0
 
 # --------------------
 # Operator overloading
@@ -13,12 +13,12 @@ trait Ordering<T>:
 
 # Implement the trait `Ordering'.
 class Money(Int amount) with Ordering<Money>:
-	fn Int compare(Money value) =
+	Int compare(Money value) =
 		self.amount <=> value.amount
 
 # Overload the plus operator.
 class Meter(Double value):
-	op Meter +(Meter m) = Meter(m.value + value)
+	Meter +(Meter m) = Meter(m.value + value)
 
 # ----------------
 # ++, -- operators

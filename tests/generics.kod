@@ -16,10 +16,10 @@ class Number extends List<Digit>
 
 # <T> must be specified, otherwise the compiler will assume that T refers to
 # some specific class.
-fn <T> List<T> reverse(List<T> elems) = elems.reverse()
+<T> List<T> reverse(List<T> elems) = elems.reverse()
 
 # Shorter:
-fn <T> [T] reverse([T] elems) = elems.reverse()
+<T> [T] reverse([T] elems) = elems.reverse()
 
 let pair := Pair<Str, Str>("key", "value")
 let pair := Pair("key", "value") # Types are derived from usage.

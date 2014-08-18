@@ -10,26 +10,26 @@
 
 # Define a new trait for all common methods and default actions.
 trait Say:
-	fn say():
+	say():
 		pass
 
 trait Hello extends Say:
-	override fn say():
+	override say():
 		super.say()
 		println("Hello ")
 
 trait World extends Say:
-	override fn say():
+	override say():
 		super.say()
 		println("World")
 
 class HelloWorld with Hello, World: # Say does not need to be listed here. It is imported implicitly.
-	override fn say():
+	override say():
 		super.say()
 		println("!")
 
 class Main:
-	fn main():
+	main():
 		let o := HelloWorld()
 		o.say() # Hello World!
 		(o as World).say() # Hello World
@@ -38,26 +38,26 @@ class Main:
 # ---
 
 trait Properties:
-	fn [Str] properties() = []
+	[Str] properties() = []
 
 # A trait can only extend other traits, not classes.
 trait Red extends Properties:
-	override fn [Str] properties() =
+	override [Str] properties() =
 		super.properties() + ["red"]
 
 trait Shiny extends Properties:
-	override fn [Str] properties() =
+	override [Str] properties() =
 		super.properties() + ["shiny"]
 
 abstract class Ball with Properties:
-	fn Str toStr():
+	Str toStr():
 		return "It's a " + properties().join(", ") + " ball"
 
 # The last added properties() gets called in Ball.
 class RedShinyBall extends Ball with Red, Shiny
 
 class Test:
-	fn test():
+	test():
 		let ball := RedShinyBall()
 		println(ball.toStr())
 
@@ -76,28 +76,28 @@ trait Bounding:
 trait Moveable extends Bounding:
 	self.descr.add("moveable")
 
-	fn moveTo(Int x, Int y):
+	moveTo(Int x, Int y):
 		pass
 
 trait Resizeable extends Bounding:
 	self.descr.add("resizable")
 
-	fn resize(Int newWidth, Int newHeight):
+	resize(Int newWidth, Int newHeight):
 		pass
 
 class Rectangle with Moveable, Resizeable:
-	fn fillColor(color):
+	fillColor(color):
 		pass
 
 # ---
 
 trait Similarity:
-	fn Bool isSimilar(Object value)
-	fn Bool isNotSimilar(Object value) = not isSimilar(x)
+	Bool isSimilar(Object value)
+	Bool isNotSimilar(Object value) = not isSimilar(x)
 
 class Point(Int x, Int y) with Similarity:
 	# Implements a trait method without body, therefore no `override' needed.
-	fn Bool isSimilar(Object value):
+	Bool isSimilar(Object value):
 		match value:
 			is Point(p, q): return self.x = p and self.y = q
 			or: return False

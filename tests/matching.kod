@@ -17,7 +17,7 @@ class Red2(Int r) extends Colour2(r, 0, 0)
 class Green2(Int g) extends Colour2(0, g, 0)
 class Blue2(Int b) extends Colour2(0, 0, b)
 
-fn Bool checkPrime(Int number):
+Bool checkPrime(Int number):
 	match number:
 		is 1: return True
 		is 2: return True
@@ -26,15 +26,15 @@ fn Bool checkPrime(Int number):
 		is 7: return True
 		or: return False
 
-fn Bool checkPrime2(Int number):
+Bool checkPrime2(Int number):
 	match number:
 		in [1..3, 5]: return True
 		is 7: return True
 		or: return False
 
-fn Bool checkPrime3(Int number) = number in [1..3, 5, 7]
+Bool checkPrime3(Int number) = number in [1..3, 5, 7]
 
-fn printColour(Colour c):
+printColour(Colour c):
 	match c:
 		is Colour(r, 0, 0): println("Red: $r")
 		is Colour(0, g, 0): println("Green: $g")
@@ -45,7 +45,7 @@ fn printColour(Colour c):
 			println("B: ${col.blue}")
 		or: println("Invalid color")
 
-fn printColour2(Colour2 c):
+printColour2(Colour2 c):
 	match c:
 		is Red2(v): println("Red: $v")
 		is Green2(v): println("Green: $v")
@@ -56,7 +56,7 @@ fn printColour2(Colour2 c):
 			println("B: ${col.blue}")
 		or: println("Invalid color")
 
-fn printColour(Colour? c):
+printColour(Colour? c):
 	match c:
 		# If a class parameter is specified in one element of the `in' keyword,
 		# then it must occur in all elements as well, and there must be

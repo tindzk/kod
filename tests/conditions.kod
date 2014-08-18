@@ -1,7 +1,7 @@
 # --------------------------
 # if..else*..else? condition
 # --------------------------
-fn action(Str s):
+action(Str s):
 	if s = "hello":
 		println("Hello World.")
 	else s = "kod":
@@ -12,7 +12,7 @@ fn action(Str s):
 # -----------------------------
 # expr? then : else  expression
 # -----------------------------
-fn test(Str s) =
+test(Str s) =
 	s = "hello" ? "Hello World" : ""
 
 # ------------------

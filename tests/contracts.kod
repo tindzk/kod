@@ -32,7 +32,7 @@
 # (abstracting from a data type and restricting the value set).
 
 class BlockNode extends Node:
-	fn Node moveAfter(Node from, Node? to, BlockNode destBlock, Node destOffset):
+	Node moveAfter(Node from, Node? to, BlockNode destBlock, Node destOffset):
 		require:
 			self.contains(from)
 			to = None or (from.compare(to) >= 0 and self.contains(to))
@@ -52,7 +52,7 @@ class BlockNode extends Node:
 			cur := next
 		return destOffset
 
-	fn Int count():
+	Int count():
 		ensure:
 			self.first = None => result = 0
 

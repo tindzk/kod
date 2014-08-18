@@ -201,14 +201,14 @@ decorator
 
 /* self denotes an alternative constructor. */
 functionDeclaration
-  : decorator* 'fn' typeParameters? type? (Identifier | 'self')
+  : decorator* typeParameters? type? (Identifier | 'self')
     '(' (parameterDeclaration (',' parameterDeclaration)*)? ')'
     codeBlock?
   ;
 
 /* Operator overloading. */
 operatorDeclaration
-  : 'op' type? ('+' | '-' | '*' | '/' | '<' | '>' | '<=' | '>=')
+  : type? ('+' | '-' | '*' | '/' | '<' | '>' | '<=' | '>=')
     '(' (parameterDeclaration (',' parameterDeclaration)*)? ')'
     codeBlock?
   ;
