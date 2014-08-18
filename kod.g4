@@ -293,6 +293,11 @@ statement
   /* while loop: The expression must be a condition (i.e. Boolean expression). */
   | 'while' expression ':' statementBlock
 
+  /* repeat loop: The expression must be an Integer expression. If the expression
+   * is omitted, this equals an endless loop.
+   */
+  | 'repeat' expression? ':' statementBlock
+
   /* If statement. */
   | 'if' expression ':' statementBlock
     (separator* 'else' expression ':' statementBlock)*
@@ -306,11 +311,6 @@ statement
   /* Match statement. */
   | 'match' expression ':'
     separator+ Indent (matchCase | separator)* Dedent
-
-  /* repeat loop: The expression must be an Integer expression. If the expression
-   * is omitted, this equals an endless loop.
-   */
-  | 'repeat' expression? ':' statementBlock
 
   /* Local variable declaration. */
   | variableDeclaration
