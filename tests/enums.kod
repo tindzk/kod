@@ -32,18 +32,18 @@ enum ConnState is {
 # Usage
 # -----
 
-let age := Age(18) # Type is Age?.
-let age2 := 18 as Age? # Equivalent to Age(18).
+age := Age(18) # Type is Age?.
+age2 := 18 as Age? # Equivalent to Age(18).
 
-let name := Nem("Joe Doe") # Compile-time error.
+name := Nem("Joe Doe") # Compile-time error.
 
 # Enumerations are iterable.
 for age in Age:
 	println(age)
 
-let state := ConnState[0] # Access first element. Type is ConnState.
-let state := ConnState(0x03) # Resolve by value. None if not found.
-let state := ConnState.Connect # Address directly.
+state := ConnState[0] # Access first element. Type is ConnState.
+state := ConnState(0x03) # Resolve by value. None if not found.
+state := ConnState.Connect # Address directly.
 
 # Enumerations implement the traits `Equal', `Ordinal', `Ordering', `Bounded'
 # and extend from the class `Enumeration'.

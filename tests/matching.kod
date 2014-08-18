@@ -71,15 +71,15 @@ printColour(Colour? c):
 			println("B: ${col.blue}")
 		or: println("Invalid color")
 
-let c := Red()
+c := Red()
 match c:
 	is Red: System.out.println("red")
 	is Blue: System.out.println("blue")
 	or: System.out.println("some other colour")
 
 # Use matching for implicit casting.
-let obj := performOperation()
-let c := None as Colour?
+obj := performOperation()
+c := None as Colour?
 match obj:
 	is Colour x: c := x
 

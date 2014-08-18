@@ -2,7 +2,7 @@
 
 Str () makeBold(Str () f):
 	# Named lambda expression, see lambda.kod.
-	let wrapped := () -> "<b>${f()}</b>"
+	wrapped := () -> "<b>${f()}</b>"
 	return wrapped
 
 Str () makeItalic(Str () f) =

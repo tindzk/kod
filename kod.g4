@@ -167,7 +167,7 @@ accessLevel
 
 initialMemberDeclaration
   /* Declaration of a new member variable. */
-  : accessLevel? 'read'? variableDeclaration separator+
+  : accessLevel? variableDeclaration separator+
 
   /* Class construction statement. */
   | statement separator+
@@ -248,10 +248,11 @@ typeParameters
   ;
 
 /* A variable must always be initialised with a value. The type is inferred.
- * If not possible, the `as' keyword must be used.
+ * If not possible, the `as' keyword must be used. Reassignments are not
+ * allowed since all values are immutable.
  */
 variableDeclaration
-  : 'let' (Identifier | tuple) ('[' tuple ']')? ':=' expression
+  : (Identifier | tuple) ('[' tuple ']')? ':=' expression
   ;
 
 codeBlock
@@ -312,20 +313,14 @@ statement
   | 'match' expression ':'
     separator+ Indent (matchCase | separator)* Dedent
 
-  /* Local variable declaration. */
+  /* Variable declaration. */
   | variableDeclaration
-
-  /* Value assignment. */
-  | expression ':=' expression
 
   /* Short-cirucit expression. The LHS must evaluate to a Boolean value. */
   | expression 'or' controlStatement
 
   /* Some expression. */
   | expression
-
-  /* Increase/decrease statement. */
-  | expression ('++' | '--')
 
   /* Control statement. */
   | controlStatement
@@ -409,7 +404,8 @@ enumMapItem
   ;
 
 arguments
-  : '(' expressionList? ')'
+  : '(' expressionList? ')'      /* Function call. */
+  | '(' memberExpressionList ')' /* Member-modifying access. */
   ;
 
 expression
@@ -430,6 +426,7 @@ expression
   | '-' expression
   | 'not' expression
   | 'typeOf' expression
+  | expression ('++' | '--')
 
   /* Binary overloadable expressions */
   | expression ('*' | '/' | 'mod') expression
@@ -454,15 +451,23 @@ expression
   | expression 'is' expression
   | expression 'as' expression
   | expression '..' expression?
-  | expression
-    ('=='<assoc=right>   /* Address equality. */
-    |'/=='<assoc=right>) /* Address inequality. */
-    expression
 
   /* Other expressions. */
   | untypedParameters '->' (expression | statementBlock) /* Lambda expression. */
   | '[' expression 'for' untypedParameters 'in' expression ('if' expression)? ']' /* List comprehension */
   | '(' expression ')'
+  ;
+
+expressionList
+  : expression (',' expression)*
+  ;
+
+memberExpression
+  : Identifier (':=' | '+=' | '-=') expression
+  ;
+
+memberExpressionList
+  : memberExpression (',' memberExpression)*
   ;
 
 /* Defined recursively to support tuple unpacking independently from the depth. */
@@ -486,10 +491,6 @@ matchCase
   : 'is' matchAtom ':' statementBlock
   | 'in' list Identifier? ':' statementBlock
   | 'or:' statementBlock
-  ;
-
-expressionList
-  : expression (',' expression)*
   ;
 
 literal

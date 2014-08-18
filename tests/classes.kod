@@ -24,23 +24,21 @@ class Date(Number day, Number month, Number year := 2012):
 	(Number, Number) getMonthYearTuple() = (self.month, self.year)
 
 class MemberInit(Number day):
-	# Initialisation of member variabes can comprise expressions.
-	self.day := day < 0 or day > 31 ? 1 : day
+	require(day in [1..31])
 
 class Main:
 	# Declare two member variables. Access to the attribute `name' is only
-	# granted to this class and its super classes. Due to the `read' qualifier
-	# all classes except for this one have solely read-only access.
-	protected read let name := "Max Mustermann"
-	public    read let age  := 20
+	# granted to this class and its super classes.
+	protected name := "Max Mustermann"
+	public    age  := 20
 
 # Only accept non-red colours as valid ones.
 type ValidColour c is Colour = (c /= Colour.Red)
 
 abstract class Shape:
 	# All attributes must have default values.
-	let fillColour := None as ValidColour?
-	let area := 0.0
+	fillColour := None as ValidColour?
+	area := 0.0
 
 	# Abstract methods are those without a body.
 	draw(Graphics g)
@@ -48,8 +46,8 @@ abstract class Shape:
 class Circle(Int radius) extends Shape:
 	# If private variables are not used later on by any method, the memory will
 	# be freed right after their usage here.
-	private let back := Math.Pi * radius
-	self.area := back * radius
+	private back := Math.Pi * radius
+	area := back * radius
 
 	draw(Graphics g):
 		if self.fillColour = None:
@@ -80,18 +78,8 @@ class Fruit:
 class Apple extends Fruit:
 	override worth() = super.worth() + 1
 
-# Class with multiple constructors.
-class Point:
-	let x := 10
-	let y := 10
-
-	self(Int x, Int y):
-		self.x := x
-		self.y := y
-
-	self(Int x):
-		self.x := x
-		self.y := 0
+# Class with default parameters.
+class Point(Int x, Int y := 0)
 
 # CustomPoint inherits all constructors.
 class CustomPoint extends Point
@@ -107,7 +95,7 @@ class CustomPoint2 extends Point:
 class CustomPoint3(Int x) extends Point(x + 1)
 
 # Instantiating class `Date'.
-let date := Date(12, 1)
+date := Date(12, 1)
 
 # Calling getSystemDate with no arguments.
 date.getSystemDate()
@@ -115,9 +103,13 @@ date.getSystemDate()
 # This is equivalent to:
 Date.getSystemDate(date)
 
-let shape := Square(100)
-shape.fillColour := Colour.Blue
-let colour := shape.fillColour
-let colour2 := shape.fillColour()
+shape := Square(100)
+shape2 := shape(fillColour := Colour.Blue)
+colour := shape.fillColour
+colour2 := shape.fillColour()
 assert colour = colour2
 shape.fillColour(Colour.Red)
+
+t := Person("Hans Meier", 12)
+println(t.name)
+t2 := t(name := "Peter Müller", age += 4)

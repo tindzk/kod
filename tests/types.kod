@@ -24,15 +24,15 @@ type Email s is Str:
 	s.matches(expr)
 
 # Person can be used in place of {Str: Int}:
-let people := {
+people := {
 	"a": 12,
 	"b": 13
 } as Person
 
-let day := OddDay(2)   # Compile-time error.
-let day := 2 as OddDay # Alternative syntax. Also yields error.
+day := OddDay(2)   # Compile-time error.
+day := 2 as OddDay # Alternative syntax. Also yields error.
 
-let mail := Mail("foo@bar.org") # Valid.
+mail := Mail("foo@bar.org") # Valid.
 
 # During compile-time all methods that do not have any side-effects are marked
 # as `pure'. In `type' only those methods can be used. For example, opening a

@@ -8,18 +8,18 @@
 [1, 2, 3]
 
 # Declare variable with a list.
-let list := [1, 2, 3, 4, 5] # Type is [Int] or List<Int>.
+list := [1, 2, 3, 4, 5] # Type is [Int] or List<Int>.
 
 list.first() = 1
 list.last() = 5
 list.at(2) = 3
 
-let list2 := ["Hello", "World"] # Type is [Str].
-let list3 := ['a', 'b', 'c'] # Type is [Char].
+list2 := ["Hello", "World"] # Type is [Str].
+list3 := ['a', 'b', 'c'] # Type is [Char].
 
 # Construct lists of floats.
-let fl := [1, 2, 3, 4, 5] as [Float]
-let fl2 := [1.0, 2.0, 3.0, 4.0, 5.0]
+fl := [1, 2, 3, 4, 5] as [Float]
+fl2 := [1.0, 2.0, 3.0, 4.0, 5.0]
 
 # Construct list from range.
 [18..28]
@@ -41,15 +41,15 @@ let fl2 := [1.0, 2.0, 3.0, 4.0, 5.0]
 [1..].take(10)
 
 # `..' is an operator defined on an Int. Therefore the above is equivalent to:
-let a := 18
-let b := 28
-let res := a .. b # Type is [Int].
+a := 18
+b := 28
+res := a .. b # Type is [Int].
 
 # The resulting list is internally optimised to evaluate upon access, allowing
 # the creation of infinite lists.
-let res := 18 .. Integer.Infinity
+res := 18 .. Integer.Infinity
 # Shorter:
-let res := 18 ..
+res := 18 ..
 
 # `..' is also defined on enumerations (see enums.kod).
 EnumType.FirstElement .. EnumType.LastElement
@@ -57,7 +57,7 @@ EnumType.FirstElement .. EnumType.LastElement
 # `in' is a right-evaluated operator. It checks whether the value on the
 # LHS is existent in the list of the RHS. Currently, `in' is the only
 # right-evaluated operator.
-let i := 3
+i := 3
 assert i in [2..10]
 
 # No new operators can be defined, only those defined in the grammar are
@@ -70,8 +70,8 @@ assert i in 2..10
 [x * 2 for x in 1..10 if x mod 2 = 0] = [4, 8, 12, 16, 20]
 
 # With the subset operator, parts of a list can be retrieved.
-let str := "hello world"
-let sub := str[1:3]
+str := "hello world"
+sub := str[1:3]
 
 # Other methods that are defined on a list:
 [1, 2, 3].sum()

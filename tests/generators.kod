@@ -4,7 +4,7 @@
 
 # Generate the Fibonacci sequence using a generator.
 Generator fibonacci():
-	let (i, j) := (0, 1)
+	(i, j) := (0, 1)
 	while True:
 		yield i
 		(i, j) := (j, i + j)
@@ -14,8 +14,8 @@ for number in fibonacci():
 	println(number)
 
 # The result of fibonacci() is callable.
-let fib := fibonacci()
-let numbers := [fib() for i in 0..100]
+fib := fibonacci()
+numbers := [fib() for i in 0..100]
 
 # As Generator implements the trait `Collection', we can shorten this to:
-let numbers := fib.take(100)
+numbers := fib.take(100)

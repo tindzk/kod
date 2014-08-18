@@ -1,3 +1,3 @@
 # The `as' operator allows type casts.
-let four := 4 as Float
+four := 4 as Float
 assert four = 4.0

@@ -1,9 +1,5 @@
-let value := True
+value := True
 assert value is Bool
-
-# Check for reference equality/inequality.
-x == y
-x /== y
 
 # Using operator `is' on values, yields its type.
 1 is Int

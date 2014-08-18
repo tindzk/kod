@@ -5,7 +5,7 @@
 ("first", 2, True)[0] = "first"
 
 # Access second element of the tuple.
-let tuple := ("first", 2, True)
+tuple := ("first", 2, True)
 tuple[1]
 
 # String concatenation.
@@ -16,11 +16,11 @@ tuple.join()
 
 # Accessing tuple values by their indexes can be somewhat cumbersome. To
 # alleviate this, there are named tuples:
-let tuple := (width: 3, length: 1.5, colour: "orange")
+tuple := (width: 3, length: 1.5, colour: "orange")
 tuple.length = 1.5
 
 # Tuples can also be used in lists:
-let list := [
+list := [
 	(name: "Linus Torvalds", address: "Santa Clara, CA 95054", nationality: "Finnish"),
 	(name: "Bill Gates", address: "Medina, WA 98039", nationality: "American")
 ]
@@ -29,7 +29,7 @@ let list := [
 # is passed to a method, the information is lost.
 
 # Shorter form:
-let list[(name, address, nationality)] := [
+list[(name, address, nationality)] := [
 	("Linus Torvalds", "Santa Clara, CA 95054", "Finnish"),
 	("Bill Gates", "Medina, WA 98039", "American")
 ]
@@ -40,19 +40,19 @@ list[0].address
 # Tuples for pattern matching:
 
 # Extract a tuple.
-let tuple := ("a", 1, True)
-let (a, b, c) := tuple
+tuple := ("a", 1, True)
+(a, b, c) := tuple
 assert a = 1
 assert b = True
 assert c = "a"
 
 # Extract a tuple partially.
-let tuple := ("a", 1, True)
-let (a,,) := tuple
-let (,b,) := tuple
-let (,,c) := tuple
+tuple := ("a", 1, True)
+(a,,) := tuple
+(,b,) := tuple
+(,,c) := tuple
 
 # Shorter:
-let (a,) := tuple
-let (,b) := tuple
-let (,,c) := tuple
+(a,) := tuple
+(,b) := tuple
+(,,c) := tuple

@@ -1,8 +1,9 @@
 # A map is a collection providing a key-to-value mapping. A key therefore has to
 # be unique. For each key, there can only be one value. Also, the order of the
-# entries is not defined.
+# entries is not defined. All operations are immutable, i.e. the original map
+# never gets modified.
 
-let names := {
+names := {
 	0: "Neil Caffrey",
 	1: "Peter Burke"
 }
@@ -11,15 +12,14 @@ let names := {
 typeOf names = {Int: Str}
 
 # Add one element.
-names.add(2, "Linus Torvalds")
+list := names.add(2, "Linus Torvalds")
 
-# Similarly, the index operator could be used.
-names[2] := "Linus Torvalds"
+# Similarly, the plus operator could be used.
+elem := names[2]
 
 # add() is overloaded and may also take a map.
-names.add({}) # Do not add anything.
-names.add({2: "Linus Torvalds", 3: "Bill Gates"})
+list := names.add({}) # Do not add anything.
+list := names.add({2: "Linus Torvalds", 3: "Bill Gates"})
 
-# Adding one or more elements using the + operator (does not modify the original
-# map).
-let names2 := names + { 2: "Linus Torvalds" }
+# Adding one or more elements using the + operator.
+names2 := names + { 2: "Linus Torvalds" }

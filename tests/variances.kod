@@ -11,21 +11,19 @@ class Stack<+A>:
 	pop(): pass
 	toStr(): pass
 
+test(Stack<Str> s): pass
+
 # Due to the +A, there is a subtyping relationship between Stack<Cat> and Stack<Animal>
 # if Cat extends Animal.
 
 class Components<+V extends Component> extends HashMap<Str, V>
 
 # Usage of the covariant stack.
-Stack<Str> stack := Stack<Str>()
-s.push(MyStr("Hello"))
-s.push("World")
+stack := Stack<Str>()
 
-Stack<MyStr> stack2 := Stack<mYStr>()
-s.push(MyStr("Hello"))
-s.push(MyStr("World"))
-stack := stack2 # Valid due to subtyping relationship.
+# Valid due to subtyping relationship.
+test(Stack<MyStr>())
 
-let map := Components<JLabel>()
-map.add({ "lbl1": JLabel(),
-		  "lbl2": JLabel() })
+map := Components<Label>()
+map.add({ "lbl1": Label(),
+		  "lbl2": Label() })

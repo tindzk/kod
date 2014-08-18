@@ -29,28 +29,28 @@ Str apply(Str cur, List<Str (Str input)> functions) =
 
 # Create a lambda function with multiple statements, binding it to the variable
 # name `add':
-let add := (a, b) ->
+add := (a, b) ->
 	println(a + b)
 	return a + b
-let nine := add(4, 5)
+nine := add(4, 5)
 
 # Define `add' using an unnamed lambda expression. The parameter and return
 # types are derived from the function usage.
-let add := (a, b) -> a + b
-let nine := add(4, 5)
+add := (a, b) -> a + b
+nine := add(4, 5)
 
 # If a lambda expression does not take any arguments, it looks like this:
-let f := () -> println("Hello World!")
+f := () -> println("Hello World!")
 
 # Define an unnamed lambda expression with exactly one argument.
-let onFilter := x -> x <= 3
+onFilter := x -> x <= 3
 
 # The _ serves as a placeholder. onFilter() could be thus shortened to:
-let onFilter := _ <= 3
+onFilter := _ <= 3
 
 # Lambda functions have access to all variables from the calling context.
-let x := 3
-let lambda := () ->
+x := 3
+lambda := () ->
 	x := x * 2
 lambda()
 println(x)
@@ -58,18 +58,16 @@ lambda()
 println(x)
 
 # Another example for lambda functions having their own referencing environment.
-let outer := () ->
-	let cnt := 0
-	let inner := () ->
-		cnt++
-		return cnt
+outer := () ->
+	cnt := 0
+	inner := () -> (cnt + 1)
 	return inner
 println(outer()) # 1
 println(outer()) # 2
 
 # Using the above onFilter() function.
-let elems := [1, 2, 3, 4, 5]
-let filtered := elems.filter(onFilter)
+elems := [1, 2, 3, 4, 5]
+filtered := elems.filter(onFilter)
 
 # We can also pass a lambda function directly as an argument.
 filtered := elems.filter(x -> x <= 3)
@@ -86,7 +84,7 @@ elems.map(_ * _) # Shorter (using placeholders).
 elems.foldLeft(0, (acc, cur) -> acc + cur) # Sum.
 
 # reduce()
-let list := [1, 2, 3, 4, 5].reduce((x, y) -> x * y)
+list := [1, 2, 3, 4, 5].reduce((x, y) -> x * y)
 
 # Use the above declared times() methods.
 ExtendedInt(10).times(() -> println("Iteration"))

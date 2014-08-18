@@ -21,9 +21,9 @@ class Number extends List<Digit>
 # Shorter:
 <T> [T] reverse([T] elems) = elems.reverse()
 
-let pair := Pair<Str, Str>("key", "value")
-let pair := Pair("key", "value") # Types are derived from usage.
+pair := Pair<Str, Str>("key", "value")
+pair := Pair("key", "value") # Types are derived from usage.
 
-let list := ArrayList<Str>()
+list := ArrayList<Str>()
 v.add("test")
-let s := list.get(0)
+s := list.get(0)
